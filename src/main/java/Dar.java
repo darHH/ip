@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Dar {
@@ -8,12 +9,18 @@ public class Dar {
         System.out.println(greetingMessage + "\n");
 
         // Main 
-        String inputState = "";
+        ArrayList<String> userList = new ArrayList<>(); // Create a dynamic array
         Scanner scanner = new Scanner(System.in); // Create a Scanner object
         while (true) { 
-            inputState = scanner.nextLine(); // Read a string input
-            if (!inputState.equalsIgnoreCase("BYE")) { 
-                System.out.println("\n" + inputState + "\n");
+            String inputState = scanner.nextLine(); // Read a string input
+            if (inputState.equalsIgnoreCase("LIST")) {
+                System.out.println("Here's the current list:");
+                for (int i = 0; i < userList.size(); i++) {
+                    System.out.println((i + 1) + ". " + userList.get(i)); 
+                } 
+            } else if (!inputState.equalsIgnoreCase("BYE")) { 
+            userList.add(inputState);
+            System.out.println("Gotcha! Added: " + inputState + "\n"); 
             } else {
                 break; 
             }
