@@ -19,6 +19,7 @@ public class Dar {
         instructionMap.put("mark", Dar::mark);
         instructionMap.put("unmark", Dar::unmark);
         instructionMap.put("list", parameter -> list());
+        instructionMap.put("todo", Dar::todo);
 
         Scanner scanner = new Scanner(System.in); // Create a Scanner object
 
@@ -31,8 +32,8 @@ public class Dar {
             if (instructionMap.containsKey(firstWord)) {
                     instructionMap.get(firstWord).accept(restOfInput); // Execute the instruction
             } else if (!firstWord.equals("bye")) {
-            Task userTask = new Task(inputState);
-            taskList.add(userTask); // Add the Task instance to the list
+                String unknownInputMessage = "My apologies, I don't understand what you mean!\n";
+                System.out.println(unknownInputMessage);
             } else {
                 break; 
             }
@@ -47,7 +48,7 @@ public class Dar {
         System.out.println("Here's your list, better get going!");
         for (int i = 0; i < taskList.size(); i++) {
             Task userTask = taskList.get(i);
-            System.out.println(userTask.getTaskNumber() + ".[" + userTask.getStatusIcon() + "] " + userTask.getDescription());
+            System.out.println(userTask.getTaskNumber() + "." + userTask.toString());
         }
         System.out.println("\n");
     }
@@ -66,5 +67,11 @@ public class Dar {
         userTask.setUnmark(); // Mark the task done
         System.out.println("Oh, this task has been unmarked:");
         System.out.println("[" + userTask.getStatusIcon() + "] " + userTask.getDescription() + "\n");
+    }
+
+    private static void todo(String restOfInput) {
+        Task userTask = new ToDo(restOfInput);
+        taskList.add(userTask); // Add the Task instance to the list
+        // System.out.println("TODO detected");
     }
 }

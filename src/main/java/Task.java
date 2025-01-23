@@ -9,7 +9,7 @@ public class Task {
         this.isDone = false;
         totalTasks++;
         this.taskNumber = totalTasks;
-        System.out.println("Gotcha! Added: " + description + "\n"); 
+        // System.out.println("Gotcha! Added: " + description + "\n"); 
     }
 
     public String getStatusIcon() {
@@ -19,7 +19,7 @@ public class Task {
     public void setMark() {
         this.isDone = true;
     }
-    
+
     public void setUnmark() {
         this.isDone = false;
     }
@@ -30,6 +30,10 @@ public class Task {
 
     public String getDescription() {
         return this.description;
+    }
+
+    public static int getTotalTasks() {
+        return totalTasks;
     }
 
 }
