@@ -5,17 +5,19 @@ Gotcha! This task has been added:
 Now you have 1 task(s) in your list.
 
 Gotcha! This task has been added:
-[D][ ] return book (by: monday)
+[D][ ] return book (By: monday)
 Now you have 2 task(s) in your list.
 
 Gotcha! This task has been added:
-[D][ ] project meeting from monday to tuesday(by: )
+[E][ ] project meeting (From:  monday  To: tuesday)
 Now you have 3 task(s) in your list.
 
 Here's your list, better get going!
 1.[T][ ] borrow book
 2.[D][ ] return book (By: monday)
-3.[D][ ] project meeting from monday to tuesday(By: )
+3.[E][ ] project meeting (From: monday To: tuesday)
+
+
 Goodjob, one less task to worry about:
 [D][X] return book (By: monday)
 
@@ -25,7 +27,9 @@ Oh okay, this task has been unmarked:
 Here's your list, better get going!
 1.[T][ ] borrow book
 2.[D][ ] return book (By: monday)
-3.[D][ ] project meeting from monday to tuesday(By: )
+3.[E][ ] project meeting (From: monday To: tuesday)
+
+
 My apologies, I don't understand what you mean! Let my dev know and I may get it next time :D 
 
 Come on man, the description of a todo task cannot be empty :<
@@ -33,5 +37,14 @@ Come on man, the description of a todo task cannot be empty :<
 Come on man, the description of a deadline task cannot be empty :<
 
 Come on man, the description of an event task cannot be empty :<
+
+Roger that, this task has been removed:
+[T][ ] borrow book
+Now you have 2 task(s) in your list.
+
+Here's your list, better get going!
+1.[D][ ] return book (By: monday)
+2.[E][ ] project meeting (From: monday To: tuesday)
+
 
 I'll see ya around, take it easy bud!

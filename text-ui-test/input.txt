@@ -9,4 +9,6 @@ unknownCommand
 todo   
 deadline
 event
+delete 1
+list
 bye

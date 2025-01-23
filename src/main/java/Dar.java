@@ -22,6 +22,7 @@ public class Dar {
         instructionMap.put("todo", Dar::todo);
         instructionMap.put("deadline", Dar::deadline);
         instructionMap.put("event", Dar::event);
+        instructionMap.put("delete", Dar::delete);
 
 
         Scanner scanner = new Scanner(System.in); // Create a Scanner object
@@ -58,6 +59,8 @@ public class Dar {
             Task userTask = taskList.get(i);
             System.out.println(userTask.getTaskNumber() + "." + userTask.toString());
         }
+        System.out.println("\n");
+
     }
 
     private static void mark(String restOfInput) {
@@ -97,10 +100,22 @@ public class Dar {
 
     private static void event(String restOfInput) {
         if (restOfInput.replace(" ","") != "") {
-            Task userTask = new Deadline(restOfInput);
+            Task userTask = new Event(restOfInput);
             taskList.add(userTask); // Add the Task instance to the list
         } else {
             System.out.println("Come on man, the description of an event task cannot be empty :<\n");
         }
+    }
+
+    private static void delete(String restOfInput) {
+        int taskNumber = Integer.parseInt(restOfInput); // Parse the parameter as an integer
+        Task userTask = taskList.remove(taskNumber - 1);
+        userTask.totalTasksMinusOne();
+        for (int i = 0; i < taskList.size(); i++) {
+            taskList.get(i).updateTaskNumber(i + 1); // Update remaining task numbers based on index
+        }
+        System.out.println("Roger that, this task has been removed:");
+        System.out.println(userTask.toString());
+        System.out.println("Now you have " + Task.getTotalTasks() + " task(s) in your list.\n");
     }
 }

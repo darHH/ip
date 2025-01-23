@@ -13,7 +13,7 @@ public class Deadline extends Task {
         } else {
             this.afterBy = ""; 
         }
-        System.out.println("Gotcha! This task has been added:\n[D][ ] " + this.description + "(by: " + afterBy + ")\n" + "Now you have " + Task.getTotalTasks() + " task(s) in your list.\n"); 
+        System.out.println("Gotcha! This task has been added:\n[D][ ] " + this.description + "(By: " + afterBy + ")\n" + "Now you have " + Task.getTotalTasks() + " task(s) in your list.\n"); 
     }
     
     @Override

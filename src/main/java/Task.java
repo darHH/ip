@@ -36,5 +36,12 @@ public class Task {
         return totalTasks;
     }
 
+    public void updateTaskNumber(int newTaskNumber) {
+        this.taskNumber = newTaskNumber;
+    }
+
+    public void totalTasksMinusOne() {
+        totalTasks--;
+    }
 }
     
