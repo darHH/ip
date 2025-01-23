@@ -5,7 +5,7 @@ import java.util.Scanner;
 public class Dar {
 
     private static final HashMap<String, Runnable> instructionMap = new HashMap<>(); // Instruction set
-    private static final ArrayList<Task> userList = new ArrayList<>(); // List of tasks
+    private static final ArrayList<Task> taskList = new ArrayList<>(); // List of tasks
 
 
     public static void main(String[] args) {
@@ -29,7 +29,7 @@ public class Dar {
                     instructionMap.get(firstWord).run(); // Execute the instruction
             } else if (!firstWord.equals("bye")) {
             Task userTask = new Task(inputState);
-            userList.add(userTask); // Add the Task instance to the list
+            taskList.add(userTask); // Add the Task instance to the list
             } else {
                 break; 
             }
@@ -41,8 +41,11 @@ public class Dar {
 
     }
     private static void list() {
-        System.out.println("listing...");
-
+        System.out.println("Here's your list, better get going!");
+        for (int i = 0; i < taskList.size(); i++) {
+            Task userTask = taskList.get(i);
+            System.out.println(userTask.getTaskNumber() + ".[" + userTask.getStatusIcon() + "] " + userTask.getDescription());
+        }
     }
 
     private static void mark() {
