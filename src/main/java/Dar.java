@@ -33,15 +33,15 @@ public class Dar {
             String restOfInput = "";
             if (inputParts.length > 1) { 
                 restOfInput = inputParts[1]; // Extract the rest of the input
-            }
+            } 
 
             if (firstWord.equals("bye")) {
                 break;
             } else if (instructionMap.containsKey(firstWord)) {
                     instructionMap.get(firstWord).accept(restOfInput); // Execute the instruction
             } else {
-                String unknownInputMessage = "My apologies, I don't understand what you mean!\n";
-                System.out.println(unknownInputMessage);
+                String unknownInputError = "My apologies, I don't understand what you mean! Let my dev know and I may get it next time :D \n";
+                System.out.println(unknownInputError);
             }
         }
         // Exit 
@@ -65,7 +65,6 @@ public class Dar {
         Task userTask = taskList.get(taskNumber - 1);
         userTask.setMark(); // Mark the task done
         System.out.println("Goodjob, one less task to worry about:");
-        // System.out.println("[" + userTask.getStatusIcon() + "] " + userTask.getDescription() + "\n");
         System.out.println(userTask.toString() +"\n");
     }
 
@@ -78,18 +77,30 @@ public class Dar {
     }
 
     private static void todo(String restOfInput) {
-        Task userTask = new ToDo(restOfInput);
-        taskList.add(userTask); // Add the Task instance to the list
-        // System.out.println("TEST TODO detected");
+        if (restOfInput.replace(" ","") != "") {
+            Task userTask = new ToDo(restOfInput);
+            taskList.add(userTask); // Add the Task instance to the list
+            // System.out.println("TEST TODO detected");
+        } else {
+            System.out.println("Come on man, the description of a todo task cannot be empty :<\n");
+        }
     }
 
     private static void deadline(String restOfInput) {
-        Task userTask = new Deadline(restOfInput);
-        taskList.add(userTask); // Add the Task instance to the list
+        if (restOfInput.replace(" ","") != "") {
+            Task userTask = new Deadline(restOfInput);
+            taskList.add(userTask); // Add the Task instance to the list
+        } else {
+            System.out.println("Come on man, the description of a deadline task cannot be empty :<\n");
+        }
     }
 
     private static void event(String restOfInput) {
-        Task userTask = new Event(restOfInput);
-        taskList.add(userTask); // Add the Task instance to the list
+        if (restOfInput.replace(" ","") != "") {
+            Task userTask = new Deadline(restOfInput);
+            taskList.add(userTask); // Add the Task instance to the list
+        } else {
+            System.out.println("Come on man, the description of an event task cannot be empty :<\n");
+        }
     }
 }

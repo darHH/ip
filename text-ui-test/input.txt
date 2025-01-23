@@ -5,5 +5,8 @@ list
 mark 2
 unmark 2
 list
-unknown
+unknownCommand
+todo   
+deadline
+event
 bye
