@@ -1,10 +1,12 @@
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Scanner;
+import java.util.function.Consumer;
+
 
 public class Dar {
 
-    private static final HashMap<String, Runnable> instructionMap = new HashMap<>(); // Instruction set
+    private static final HashMap<String, Consumer<String>> instructionMap = new HashMap<>(); // Instruction set
     private static final ArrayList<Task> taskList = new ArrayList<>(); // List of tasks
 
 
@@ -16,7 +18,7 @@ public class Dar {
         // Main 
         instructionMap.put("mark", Dar::mark);
         instructionMap.put("unmark", Dar::unmark);
-        instructionMap.put("list", Dar::list);
+        instructionMap.put("list", parameter -> list());
 
         Scanner scanner = new Scanner(System.in); // Create a Scanner object
 
@@ -24,9 +26,10 @@ public class Dar {
             String inputState = scanner.nextLine(); // Read a string input
             String[] inputParts = inputState.split(" "); // Split input into parts
             String firstWord = inputParts[0].toLowerCase(); // Extract the first word
+            String restOfInput = inputParts.length > 1 ? inputParts[1] : ""; // Rest of the input
 
             if (instructionMap.containsKey(firstWord)) {
-                    instructionMap.get(firstWord).run(); // Execute the instruction
+                    instructionMap.get(firstWord).accept(restOfInput); // Execute the instruction
             } else if (!firstWord.equals("bye")) {
             Task userTask = new Task(inputState);
             taskList.add(userTask); // Add the Task instance to the list
@@ -37,22 +40,22 @@ public class Dar {
         // Exit 
         scanner.close();
         String exitMessage = "I'll see ya around, take it easy bud!";
-        System.out.println("\n" + exitMessage);
+        System.out.println(exitMessage);
 
     }
     private static void list() {
         System.out.println("Here's your list, better get going!");
         for (int i = 0; i < taskList.size(); i++) {
             Task userTask = taskList.get(i);
-            System.out.println(userTask.getTaskNumber() + ".[" + userTask.getStatusIcon() + "] " + userTask.getDescription());
+            System.out.println(userTask.getTaskNumber() + ".[" + userTask.getStatusIcon() + "] " + userTask.getDescription() + "\n");
         }
     }
 
-    private static void mark() {
+    private static void mark(String restOfInput) {
         System.out.println("marking...");
     }
 
-    private static void unmark() {
+    private static void unmark(String restOfInput) {
         System.out.println("unmarking...");
 
     }
