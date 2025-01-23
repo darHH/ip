@@ -47,16 +47,24 @@ public class Dar {
         System.out.println("Here's your list, better get going!");
         for (int i = 0; i < taskList.size(); i++) {
             Task userTask = taskList.get(i);
-            System.out.println(userTask.getTaskNumber() + ".[" + userTask.getStatusIcon() + "] " + userTask.getDescription() + "\n");
+            System.out.println(userTask.getTaskNumber() + ".[" + userTask.getStatusIcon() + "] " + userTask.getDescription());
         }
+        System.out.println("\n");
     }
 
     private static void mark(String restOfInput) {
-        System.out.println("marking...");
+        int taskNumber = Integer.parseInt(restOfInput); // Parse the parameter as an integer
+        Task userTask = taskList.get(taskNumber - 1);
+        userTask.setMark(); // Mark the task done
+        System.out.println("Goodjob, one less task to worry about:");
+        System.out.println("[" + userTask.getStatusIcon() + "] " + userTask.getDescription() + "\n");
     }
 
     private static void unmark(String restOfInput) {
-        System.out.println("unmarking...");
-
+        int taskNumber = Integer.parseInt(restOfInput); // Parse the parameter as an integer
+        Task userTask = taskList.get(taskNumber - 1);
+        userTask.setUnmark(); // Mark the task done
+        System.out.println("Oh, this task has been unmarked:");
+        System.out.println("[" + userTask.getStatusIcon() + "] " + userTask.getDescription() + "\n");
     }
 }

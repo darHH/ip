@@ -16,6 +16,14 @@ public class Task {
         return (isDone ? "X" : " "); // mark done task with X
     }
 
+    public void setMark() {
+        this.isDone = true;
+    }
+    
+    public void setUnmark() {
+        this.isDone = false;
+    }
+
     public int getTaskNumber() {
         return this.taskNumber;
     }
