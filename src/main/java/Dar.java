@@ -21,25 +21,27 @@ public class Dar {
         instructionMap.put("list", parameter -> list());
         instructionMap.put("todo", Dar::todo);
         instructionMap.put("deadline", Dar::deadline);
+        instructionMap.put("event", Dar::event);
+
 
         Scanner scanner = new Scanner(System.in); // Create a Scanner object
 
         while (true) { 
             String inputState = scanner.nextLine(); // Read a string input
-            String[] inputParts = inputState.split(" "); // Split input into parts
+            String[] inputParts = inputState.split(" ", 2); // Split input into two parts
             String firstWord = inputParts[0].toLowerCase(); // Extract the first word
             String restOfInput = "";
-            for (int i = 1; i < inputParts.length; i++) {
-                restOfInput += inputParts[i];
-            } // Rest of the input
+            if (inputParts.length > 1) { 
+                restOfInput = inputParts[1]; // Extract the rest of the input
+            }
 
-            if (instructionMap.containsKey(firstWord)) {
+            if (firstWord.equals("bye")) {
+                break;
+            } else if (instructionMap.containsKey(firstWord)) {
                     instructionMap.get(firstWord).accept(restOfInput); // Execute the instruction
-            } else if (!firstWord.equals("bye")) {
+            } else {
                 String unknownInputMessage = "My apologies, I don't understand what you mean!\n";
                 System.out.println(unknownInputMessage);
-            } else {
-                break; 
             }
         }
         // Exit 
@@ -48,7 +50,9 @@ public class Dar {
         System.out.println(exitMessage);
 
     }
+
     private static void list() {
+        // System.out.println("TEST Task list size: " + taskList.size());
         System.out.println("Here's your list, better get going!");
         for (int i = 0; i < taskList.size(); i++) {
             Task userTask = taskList.get(i);
@@ -77,11 +81,16 @@ public class Dar {
     private static void todo(String restOfInput) {
         Task userTask = new ToDo(restOfInput);
         taskList.add(userTask); // Add the Task instance to the list
-        // System.out.println("TODO detected");
+        // System.out.println("TEST TODO detected");
     }
 
     private static void deadline(String restOfInput) {
         Task userTask = new Deadline(restOfInput);
+        taskList.add(userTask); // Add the Task instance to the list
+    }
+
+    private static void event(String restOfInput) {
+        Task userTask = new Event(restOfInput);
         taskList.add(userTask); // Add the Task instance to the list
     }
 }
