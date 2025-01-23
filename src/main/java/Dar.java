@@ -58,7 +58,6 @@ public class Dar {
             Task userTask = taskList.get(i);
             System.out.println(userTask.getTaskNumber() + "." + userTask.toString());
         }
-        System.out.println("\n");
     }
 
     private static void mark(String restOfInput) {
@@ -67,7 +66,7 @@ public class Dar {
         userTask.setMark(); // Mark the task done
         System.out.println("Goodjob, one less task to worry about:");
         // System.out.println("[" + userTask.getStatusIcon() + "] " + userTask.getDescription() + "\n");
-        System.out.println(userTask.toString());
+        System.out.println(userTask.toString() +"\n");
     }
 
     private static void unmark(String restOfInput) {
@@ -75,7 +74,7 @@ public class Dar {
         Task userTask = taskList.get(taskNumber - 1);
         userTask.setUnmark(); // Mark the task done
         System.out.println("Oh okay, this task has been unmarked:");
-        System.out.println(userTask.toString());
+        System.out.println(userTask.toString() +"\n");
     }
 
     private static void todo(String restOfInput) {

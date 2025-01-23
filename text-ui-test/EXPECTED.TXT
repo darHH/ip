@@ -1,7 +1,31 @@
-Hello from
- ____        _        
-|  _ \ _   _| | _____ 
-| | | | | | | |/ / _ \
-| |_| | |_| |   <  __/
-|____/ \__,_|_|\_\___|
+Hey buddy! The name's Dar, what can I do for you today?
 
+Gotcha! This task has been added:
+[T][ ] borrow book
+Now you have 1 task(s) in your list.
+
+Gotcha! This task has been added:
+[D][ ] return book (by: monday)
+Now you have 2 task(s) in your list.
+
+Gotcha! This task has been added:
+[E][ ] project meeting (From:  monday  To: tuesday)
+Now you have 3 task(s) in your list.
+
+Here's your list, better get going!
+1.[T][ ] borrow book
+2.[D][ ] return book (By: monday)
+3.[E][ ] project meeting (From: monday To: tuesday)
+Goodjob, one less task to worry about:
+[D][X] return book (By: monday)
+
+Oh okay, this task has been unmarked:
+[D][ ] return book (By: monday)
+
+Here's your list, better get going!
+1.[T][ ] borrow book
+2.[D][ ] return book (By: monday)
+3.[E][ ] project meeting (From: monday To: tuesday)
+My apologies, I don't understand what you mean!
+
+I'll see ya around, take it easy bud!

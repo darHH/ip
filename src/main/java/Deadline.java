@@ -7,7 +7,7 @@ public class Deadline extends Task {
         super(description);
         String[] descriptionParts = description.split("by");
         this.description = descriptionParts[0];
-        System.out.println(this.description);
+        // System.out.println(this.description);
         if (descriptionParts.length > 1) {
             this.afterBy = descriptionParts[1].trim();
         } else {
