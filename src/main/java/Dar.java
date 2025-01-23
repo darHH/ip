@@ -20,6 +20,7 @@ public class Dar {
         instructionMap.put("unmark", Dar::unmark);
         instructionMap.put("list", parameter -> list());
         instructionMap.put("todo", Dar::todo);
+        instructionMap.put("deadline", Dar::deadline);
 
         Scanner scanner = new Scanner(System.in); // Create a Scanner object
 
@@ -27,7 +28,10 @@ public class Dar {
             String inputState = scanner.nextLine(); // Read a string input
             String[] inputParts = inputState.split(" "); // Split input into parts
             String firstWord = inputParts[0].toLowerCase(); // Extract the first word
-            String restOfInput = inputParts.length > 1 ? inputParts[1] : ""; // Rest of the input
+            String restOfInput = "";
+            for (int i = 1; i < inputParts.length; i++) {
+                restOfInput += inputParts[i];
+            } // Rest of the input
 
             if (instructionMap.containsKey(firstWord)) {
                     instructionMap.get(firstWord).accept(restOfInput); // Execute the instruction
@@ -58,20 +62,26 @@ public class Dar {
         Task userTask = taskList.get(taskNumber - 1);
         userTask.setMark(); // Mark the task done
         System.out.println("Goodjob, one less task to worry about:");
-        System.out.println("[" + userTask.getStatusIcon() + "] " + userTask.getDescription() + "\n");
+        // System.out.println("[" + userTask.getStatusIcon() + "] " + userTask.getDescription() + "\n");
+        System.out.println(userTask.toString());
     }
 
     private static void unmark(String restOfInput) {
         int taskNumber = Integer.parseInt(restOfInput); // Parse the parameter as an integer
         Task userTask = taskList.get(taskNumber - 1);
         userTask.setUnmark(); // Mark the task done
-        System.out.println("Oh, this task has been unmarked:");
-        System.out.println("[" + userTask.getStatusIcon() + "] " + userTask.getDescription() + "\n");
+        System.out.println("Oh okay, this task has been unmarked:");
+        System.out.println(userTask.toString());
     }
 
     private static void todo(String restOfInput) {
         Task userTask = new ToDo(restOfInput);
         taskList.add(userTask); // Add the Task instance to the list
         // System.out.println("TODO detected");
+    }
+
+    private static void deadline(String restOfInput) {
+        Task userTask = new Deadline(restOfInput);
+        taskList.add(userTask); // Add the Task instance to the list
     }
 }
