@@ -6,9 +6,8 @@ mark 2
 unmark 2
 list
 unknownCommand
-todo   
-deadline
-event
+delete 1
+delete 1
 delete 1
 list
 bye
