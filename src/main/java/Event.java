@@ -30,6 +30,6 @@ public class Event extends Task {
 
     @Override
     public String toDataFormat() {
-        return "E | " + (isDone ? "1" : "0") + " | " + this.description + " from " + this.afterFrom + " to " + afterTo;
+        return "E | " + (isDone ? "1" : "0") + " | " + this.description + "from" + this.afterFrom + "to " + afterTo;
     }
 }

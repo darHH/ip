@@ -72,6 +72,7 @@ public class Dar {
         int taskNumber = Integer.parseInt(restOfInput); // Parse the parameter as an integer
         Task userTask = taskList.get(taskNumber - 1);
         userTask.setMark(); // Mark the task done
+        storage.saveTasks(taskList); // Save to data
         System.out.println("Goodjob, one less task to worry about:");
         System.out.println(userTask.toString() +"\n");
     }
@@ -80,6 +81,7 @@ public class Dar {
         int taskNumber = Integer.parseInt(restOfInput); // Parse the parameter as an integer
         Task userTask = taskList.get(taskNumber - 1);
         userTask.setUnmark(); // Mark the task done
+        storage.saveTasks(taskList); // Save to data
         System.out.println("Oh okay, this task has been unmarked:");
         System.out.println(userTask.toString() +"\n");
     }
@@ -88,6 +90,7 @@ public class Dar {
         if (restOfInput.replace(" ","") != "") {
             Task userTask = new ToDo(restOfInput);
             taskList.add(userTask); // Add the Task instance to the list
+            storage.saveTasks(taskList); // Save to data
             // System.out.println("TEST TODO detected");
         } else {
             System.out.println("Come on man, the description of a todo task cannot be empty :<\n");
@@ -98,6 +101,7 @@ public class Dar {
         if (restOfInput.replace(" ","") != "") {
             Task userTask = new Deadline(restOfInput);
             taskList.add(userTask); // Add the Task instance to the list
+            storage.saveTasks(taskList); // Save to data
         } else {
             System.out.println("Come on man, the description of a deadline task cannot be empty :<\n");
         }
@@ -107,6 +111,7 @@ public class Dar {
         if (restOfInput.replace(" ","") != "") {
             Task userTask = new Event(restOfInput);
             taskList.add(userTask); // Add the Task instance to the list
+            storage.saveTasks(taskList); // Save to data
         } else {
             System.out.println("Come on man, the description of an event task cannot be empty :<\n");
         }
@@ -119,6 +124,7 @@ public class Dar {
         for (int i = 0; i < taskList.size(); i++) {
             taskList.get(i).updateTaskNumber(i + 1); // Update remaining task numbers based on index
         }
+        storage.saveTasks(taskList); // Save to data
         System.out.println("Roger that, this task has been removed:");
         System.out.println(userTask.toString());
         System.out.println("Now you have " + Task.getTotalTasks() + " task(s) in your list.\n");

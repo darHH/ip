@@ -23,6 +23,6 @@ public class Deadline extends Task {
 
     @Override
     public String toDataFormat() {
-        return "E | " + (isDone ? "1" : "0") + " | " + this.description + " by " + this.afterBy;
+        return "D | " + (isDone ? "1" : "0") + " | " + this.description + "by " + this.afterBy;
     }
 }
