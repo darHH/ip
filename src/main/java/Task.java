@@ -47,15 +47,28 @@ public abstract class Task {
     public abstract String toDataFormat();
 
     public static Task fromDataFormat(String dataLine) {
-        String[] parts = dataLine.split(" | ");
+        String[] parts = dataLine.split(" \\| ");
+        String typeTask = parts[0];
         boolean isDone = parts[1].equals("1");
         String dataDescription = parts[2];
-        Task newTask = new ToDo(dataDescription);
+        Task newTask;
+
+        if (typeTask.equals("T")) {
+            newTask = new ToDo(dataDescription);
+        } else if (typeTask.equals("D")) {
+            newTask = new Deadline(dataDescription);
+        } else if (typeTask.equals("E")) {
+            newTask = new Event(dataDescription);
+        } else {
+            throw new IllegalArgumentException("Unknown task type: " + typeTask);
+        }
+
         if (isDone) {
             newTask.setMark();
         } else {
             newTask.setUnmark();
-        }        
+        }
+
         return newTask;
     }
 

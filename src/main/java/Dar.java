@@ -2,15 +2,19 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Scanner;
 import java.util.function.Consumer;
-import java.util.Scanner;
 
 public class Dar {
 
     private static final HashMap<String, Consumer<String>> instructionMap = new HashMap<>(); // Instruction set
     private static final ArrayList<Task> taskList = new ArrayList<>(); // List of tasks
+    private static final Storage storage = new Storage("./data/dardata.txt"); // Storage instance
 
 
     public static void main(String[] args) {
+
+        // Initialization and bot start up 
+        taskList.addAll(storage.loadTasks());
+
         // Greeting
         String greetingMessage = "Hey buddy! The name's Dar, what can I do for you today?";
         System.out.println(greetingMessage + "\n");
@@ -37,6 +41,7 @@ public class Dar {
             } 
 
             if (firstWord.equals("bye")) {
+                storage.saveTasks(taskList);
                 break;
             } else if (instructionMap.containsKey(firstWord)) {
                     instructionMap.get(firstWord).accept(restOfInput); // Execute the instruction
