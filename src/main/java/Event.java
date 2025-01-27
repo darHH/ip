@@ -27,4 +27,9 @@ public class Event extends Task {
     public String toString() {
         return "[E][" + this.getStatusIcon() + "] " + this.description + "(From:" + this.afterFrom + "To: " + this.afterTo + ")";
     }
+
+    @Override
+    public String toDataFormat() {
+        return "E | " + (isDone ? "1" : "0") + " | " + this.description + " from " + this.afterFrom + " to " + afterTo;
+    }
 }

@@ -1,4 +1,4 @@
-public class Task {
+public abstract class Task {
     protected String description;
     protected boolean isDone;
     static int totalTasks = 0;
@@ -43,5 +43,21 @@ public class Task {
     public void totalTasksMinusOne() {
         totalTasks--;
     }
+    
+    public abstract String toDataFormat();
+
+    public static Task fromDataFormat(String dataLine) {
+        String[] parts = dataLine.split(" | ");
+        boolean isDone = parts[1].equals("1");
+        String dataDescription = parts[2];
+        Task newTask = new ToDo(dataDescription);
+        if (isDone) {
+            newTask.setMark();
+        } else {
+            newTask.setUnmark();
+        }        
+        return newTask;
+    }
+
 }
     
