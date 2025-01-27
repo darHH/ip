@@ -15,15 +15,13 @@ public class Deadline extends Task {
         super(description);
         String[] descriptionParts = description.split("by");
         this.description = descriptionParts[0];
-        // System.out.println(this.description);
-        if (descriptionParts.length > 1) {
-            this.afterBy = descriptionParts[1].trim();
-        } else {
-            this.afterBy = ""; 
-        }
+        // TEST System.out.println(this.description);
+        this.afterBy = (descriptionParts.length > 1) ? descriptionParts[1].trim() : "-";
+
         saveDateTime(afterBy);
+
         System.out.println("Gotcha! This task has been added:\n  " + this.toString());
-        System.out.println("Now you have " + Task.getTotalTasks() + " task(s) in your list.\n"); 
+        System.out.println("Now you have " + Task.getTotalTasks() + " task(s) in your list.\n");
     }
     
     // Function to save date and time, date has to be in DD/MM/YYYY, time has to be in 24 hour DDMM format
@@ -44,19 +42,24 @@ public class Deadline extends Task {
         if (currentNumber.length() > 0) {
             numberSequence.add(currentNumber.toString());
         }
+        boolean validDateOrTime = false;
+
         for (String element : numberSequence) {
             if (element.matches("\\d{2}/\\d{2}/\\d{4}")) {
                 DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
                 deadlineDate = LocalDate.parse(element, dateFormatter);
+                validDateOrTime = true;
             } else if (element.matches("\\d{4}")) {
                 DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern("HHmm");
                 deadlineTime = LocalTime.parse(element, timeFormatter);
-            } else {
-                System.out.println("Invalid format: " + element);
-                System.out.println("Dates should be in DD/MM/YYYY, Time should be in 24hr HHMM format, exactly!");
-            }
+                validDateOrTime = true;
+            } 
         }
-        if (deadlineDate != null || deadlineTime != null) {
+
+        if (!validDateOrTime) {
+            afterBy = "-";
+            System.out.println("No valid date or time found. Dates should be in DD/MM/YYYY, Time in HHMM format!");
+        } else {
             System.out.println("Deadline saved with:");
             if (deadlineDate != null) {
                 System.out.println("  Date: " + deadlineDate);
@@ -67,11 +70,16 @@ public class Deadline extends Task {
         }
     }
 
-
-
     @Override
     public String toString() {
-        return "[D][" + this.getStatusIcon() + "] " + this.description + "(By: " + afterBy + ")";
+        String formattedDate = (deadlineDate != null) 
+                ? deadlineDate.format(DateTimeFormatter.ofPattern("dd MMM yyyy")) 
+                : "-";
+        String formattedTime = (deadlineTime != null) 
+                ? deadlineTime.format(DateTimeFormatter.ofPattern("h a")) 
+                : "-";
+    
+        return "[D][" + this.getStatusIcon() + "] " + this.description + " (By: " + formattedDate + " " + formattedTime + ")";
     }
 
     @Override
