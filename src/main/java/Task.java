@@ -1,4 +1,4 @@
-public class Task {
+public abstract class Task {
     protected String description;
     protected boolean isDone;
     static int totalTasks = 0;
@@ -43,5 +43,34 @@ public class Task {
     public void totalTasksMinusOne() {
         totalTasks--;
     }
+    
+    public abstract String toDataFormat();
+
+    public static Task fromDataFormat(String dataLine) {
+        String[] parts = dataLine.split(" \\| ");
+        String typeTask = parts[0];
+        boolean isDone = parts[1].equals("1");
+        String dataDescription = parts[2];
+        Task newTask;
+
+        if (typeTask.equals("T")) {
+            newTask = new ToDo(dataDescription);
+        } else if (typeTask.equals("D")) {
+            newTask = new Deadline(dataDescription);
+        } else if (typeTask.equals("E")) {
+            newTask = new Event(dataDescription);
+        } else {
+            throw new IllegalArgumentException("Unknown task type: " + typeTask);
+        }
+
+        if (isDone) {
+            newTask.setMark();
+        } else {
+            newTask.setUnmark();
+        }
+
+        return newTask;
+    }
+
 }
     

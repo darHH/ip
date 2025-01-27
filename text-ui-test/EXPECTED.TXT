@@ -32,19 +32,19 @@ Here's your list, better get going!
 
 My apologies, I don't understand what you mean! Let my dev know and I may get it next time :D 
 
-Come on man, the description of a todo task cannot be empty :<
-
-Come on man, the description of a deadline task cannot be empty :<
-
-Come on man, the description of an event task cannot be empty :<
-
 Roger that, this task has been removed:
 [T][ ] borrow book
 Now you have 2 task(s) in your list.
 
+Roger that, this task has been removed:
+[D][ ] return book (By: monday)
+Now you have 1 task(s) in your list.
+
+Roger that, this task has been removed:
+[E][ ] project meeting (From: monday To: tuesday)
+Now you have 0 task(s) in your list.
+
 Here's your list, better get going!
-1.[D][ ] return book (By: monday)
-2.[E][ ] project meeting (From: monday To: tuesday)
 
 
 I'll see ya around, take it easy bud!
