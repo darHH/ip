@@ -1,15 +1,15 @@
 Hey buddy! The name's Dar, what can I do for you today?
 
-Gotcha! This task has been added:
+ToDo task has been added:
   [T][ ] borrow book
 Now you have 1 task(s) in your list.
 
-No valid date or time found. Dates should be in DD/MM/YYYY, Time in HHMM format!
-Gotcha! This task has been added:
+(Invalid Date/Time - Date should be in DD/MM/YYYY and Time in HHMM format)
+Deadline task has been added:
   [D][ ] return book  (By: - -)
 Now you have 2 task(s) in your list.
 
-Gotcha! This task has been added:
+Event task has been added:
   [E][ ] project meeting (From: monday To: tuesday)
 Now you have 3 task(s) in your list.
 
@@ -18,8 +18,7 @@ Here's your list, better get going!
 2.[D][ ] return book  (By: - -)
 3.[E][ ] project meeting (From: monday To: tuesday)
 
-
-Goodjob, one less task to worry about:
+Good job, one less task to worry about:
 [D][X] return book  (By: - -)
 
 Oh okay, this task has been unmarked:
@@ -29,7 +28,6 @@ Here's your list, better get going!
 1.[T][ ] borrow book
 2.[D][ ] return book  (By: - -)
 3.[E][ ] project meeting (From: monday To: tuesday)
-
 
 My apologies, I don't understand what you mean! Let my dev know and I may get it next time :D 
 
@@ -49,5 +47,5 @@ Now you have 0 task(s) in your list.
 
 Here's your list, better get going!
 
-
 I'll see ya around, take it easy bud!
+

@@ -2,7 +2,7 @@ public class ToDo extends Task {
 
     public ToDo(String description) {
         super(description);
-        System.out.println("Gotcha! This task has been added:\n  " + this.toString());
+        System.out.println("ToDo task has been added:\n  " + this.toString());
         System.out.println("Now you have " + Task.getTotalTasks() + " task(s) in your list.\n");     
     }
 

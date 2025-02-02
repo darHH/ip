@@ -9,7 +9,6 @@ public abstract class Task {
         this.isDone = false;
         totalTasks++;
         this.taskNumber = totalTasks;
-        // System.out.println("Gotcha! Added: " + description + "\n"); 
     }
 
     public String getStatusIcon() {
