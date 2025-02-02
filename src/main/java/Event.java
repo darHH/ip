@@ -21,7 +21,7 @@ public class Event extends Task {
             this.afterTo = "-"; 
 
         }
-        System.out.println("Gotcha! This task has been added:\n  " + this.toString());
+        System.out.println("Event task has been added:\n  " + this.toString());
         System.out.println("Now you have " + Task.getTotalTasks() + " task(s) in your list.\n"); 
     }
     

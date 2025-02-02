@@ -20,7 +20,7 @@ public class Deadline extends Task {
 
         saveDateTime(afterBy);
 
-        System.out.println("Gotcha! This task has been added:\n  " + this.toString());
+        System.out.println("Deadline task has been added:\n  " + this.toString());
         System.out.println("Now you have " + Task.getTotalTasks() + " task(s) in your list.\n");
     }
     
@@ -58,7 +58,7 @@ public class Deadline extends Task {
 
         if (!validDateOrTime) {
             afterBy = "-";
-            System.out.println("No valid date or time found. Dates should be in DD/MM/YYYY, Time in HHMM format!");
+            System.out.println("(Invalid Date/Time - Date should be in DD/MM/YYYY and Time in HHMM format)");
         } else {
             System.out.println("Deadline saved with:");
             if (deadlineDate != null) {
