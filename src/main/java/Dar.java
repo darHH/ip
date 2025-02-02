@@ -32,24 +32,25 @@ public class Dar {
         Scanner scanner = new Scanner(System.in); // Create a Scanner object
 
         while (true) { 
-            String inputState = scanner.nextLine(); // Read a string input
-            String[] inputParts = inputState.split(" ", 2); // Split input into two parts
-            String firstWord = inputParts[0].toLowerCase(); // Extract the first word
-            String restOfInput = "";
-            if (inputParts.length > 1) { 
-                restOfInput = inputParts[1]; // Extract the rest of the input
-            } 
-
-            if (firstWord.equals("bye")) {
+            String inputText = scanner.nextLine().trim(); // Read a string input
+            if (inputText.isEmpty()) {
+                System.out.println("Oops! You entered nothing. Try again.\n");
+                continue;
+            }
+            Parser parser = new Parser(inputText);
+            String commandWord = parser.getCommandWord();
+            String descriptionText = parser.getDescriptionText();
+            if (commandWord.equals("bye")) {
                 storage.saveTasks(taskList);
                 break;
-            } else if (instructionMap.containsKey(firstWord)) {
-                    instructionMap.get(firstWord).accept(restOfInput); // Execute the instruction
+            } else if (instructionMap.containsKey(commandWord)) {
+                    instructionMap.get(commandWord).accept(descriptionText); // Execute the instruction
             } else {
                 String unknownInputError = "My apologies, I don't understand what you mean! Let my dev know and I may get it next time :D \n";
                 System.out.println(unknownInputError);
             }
         }
+
         // Exit 
         scanner.close();
         String exitMessage = "I'll see ya around, take it easy bud!";

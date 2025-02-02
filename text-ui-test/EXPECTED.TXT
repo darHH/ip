@@ -1,43 +1,46 @@
 Hey buddy! The name's Dar, what can I do for you today?
 
 Gotcha! This task has been added:
-[T][ ] borrow book
+  [T][ ] borrow book
 Now you have 1 task(s) in your list.
 
+No valid date or time found. Dates should be in DD/MM/YYYY, Time in HHMM format!
 Gotcha! This task has been added:
-[D][ ] return book (By: monday)
+  [D][ ] return book  (By: - -)
 Now you have 2 task(s) in your list.
 
 Gotcha! This task has been added:
-[E][ ] project meeting (From:  monday  To: tuesday)
+  [E][ ] project meeting (From: monday To: tuesday)
 Now you have 3 task(s) in your list.
 
 Here's your list, better get going!
 1.[T][ ] borrow book
-2.[D][ ] return book (By: monday)
+2.[D][ ] return book  (By: - -)
 3.[E][ ] project meeting (From: monday To: tuesday)
 
 
 Goodjob, one less task to worry about:
-[D][X] return book (By: monday)
+[D][X] return book  (By: - -)
 
 Oh okay, this task has been unmarked:
-[D][ ] return book (By: monday)
+[D][ ] return book  (By: - -)
 
 Here's your list, better get going!
 1.[T][ ] borrow book
-2.[D][ ] return book (By: monday)
+2.[D][ ] return book  (By: - -)
 3.[E][ ] project meeting (From: monday To: tuesday)
 
 
 My apologies, I don't understand what you mean! Let my dev know and I may get it next time :D 
 
+Oops! You entered nothing. Try again.
+
 Roger that, this task has been removed:
 [T][ ] borrow book
 Now you have 2 task(s) in your list.
 
 Roger that, this task has been removed:
-[D][ ] return book (By: monday)
+[D][ ] return book  (By: - -)
 Now you have 1 task(s) in your list.
 
 Roger that, this task has been removed:
