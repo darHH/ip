@@ -70,13 +70,21 @@ public class Deadline extends Task {
         }
     }
 
+    public String getDeadlineDate() {
+        return deadlineDate.format(DateTimeFormatter.ofPattern("dd MMM yyyy"));
+    }
+
+    public String getDeadlineTime() {
+        return this.deadlineTime.format(DateTimeFormatter.ofPattern("ha"));
+    }
+
     @Override
     public String toString() {
         String formattedDate = (deadlineDate != null) 
                 ? deadlineDate.format(DateTimeFormatter.ofPattern("dd MMM yyyy")) 
                 : "-";
         String formattedTime = (deadlineTime != null) 
-                ? deadlineTime.format(DateTimeFormatter.ofPattern("h a")) 
+                ? deadlineTime.format(DateTimeFormatter.ofPattern("ha")) 
                 : "-";
     
         return "[D][" + this.getStatusIcon() + "] " + this.description + " (By: " + formattedDate + " " + formattedTime + ")";

@@ -18,7 +18,7 @@ public class Storage {
     private void doesFileExist() {
         try {
             File file = new File(filePath);
-            if (!file.getParentFile().exists()) {
+            if (file.getParentFile() != null && !file.getParentFile().exists()) {
                 file.getParentFile().mkdirs(); // Create parent directory
             }
             if (!file.exists()) {
