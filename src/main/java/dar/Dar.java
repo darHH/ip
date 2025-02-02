@@ -1,6 +1,8 @@
+package dar;
 import java.util.HashMap;
 import java.util.Scanner;
 import java.util.function.Consumer;
+import command.CommandManager;
 
 public class Dar {
 

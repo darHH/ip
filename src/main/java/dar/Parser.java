@@ -1,3 +1,5 @@
+package dar;
+
 public class Parser {
     private final String commandWord;
     private final String descriptionText;

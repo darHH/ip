@@ -1,3 +1,5 @@
+package dar;
+
 public class Ui {
     public Ui(){
         // Empty constructor
@@ -6,7 +8,7 @@ public class Ui {
     public void showGreetingMessage(){
         System.out.println("Hey buddy! The name's Dar, what can I do for you today?\n");
     }
-    
+
     public void showInvalidInputMessage() {
         System.out.println("Oops! You entered nothing. Try again.\n");
     }
