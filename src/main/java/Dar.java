@@ -11,13 +11,12 @@ public class Dar {
 
 
     public static void main(String[] args) {
-
         // Initialization and bot start up 
         taskList.addAll(storage.loadTasks());
+        Ui ui = new Ui();
 
         // Greeting
-        String greetingMessage = "Hey buddy! The name's Dar, what can I do for you today?";
-        System.out.println(greetingMessage + "\n");
+        ui.showGreetingMessage();
 
         // Main 
         instructionMap.put("mark", Dar::mark);
@@ -34,7 +33,7 @@ public class Dar {
         while (true) { 
             String inputText = scanner.nextLine().trim(); // Read a string input
             if (inputText.isEmpty()) {
-                System.out.println("Oops! You entered nothing. Try again.\n");
+                ui.showInvalidInputMessage();
                 continue;
             }
             Parser parser = new Parser(inputText);
@@ -46,16 +45,13 @@ public class Dar {
             } else if (instructionMap.containsKey(commandWord)) {
                     instructionMap.get(commandWord).accept(descriptionText); // Execute the instruction
             } else {
-                String unknownInputError = "My apologies, I don't understand what you mean! Let my dev know and I may get it next time :D \n";
-                System.out.println(unknownInputError);
+                ui.showUnknownInputMessage();
             }
         }
 
         // Exit 
         scanner.close();
-        String exitMessage = "I'll see ya around, take it easy bud!";
-        System.out.println(exitMessage);
-
+        ui.showExitMessage();
     }
 
     private static void list() {
