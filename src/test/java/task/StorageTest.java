@@ -19,10 +19,8 @@ public class StorageTest {
         tasks.add(new Deadline("Submit assignment by 12/12/2222 1600"));
         tasks.add(new Event("Project meeting from monday to wednesday"));
 
-        // Save tasks
         storage.saveTasks(tasks);
 
-        // Load tasks
         List<Task> loadedTasks = storage.loadTasks();
 
         // Validate the loaded tasks match the saved ones
@@ -31,7 +29,6 @@ public class StorageTest {
         assertEquals(tasks.get(1).toString(), loadedTasks.get(1).toString());
         assertEquals(tasks.get(2).toString(), loadedTasks.get(2).toString());
 
-        // Cleanup: Delete test file
         new File("test_data.txt").delete();
     }
 }
