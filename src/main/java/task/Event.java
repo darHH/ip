@@ -6,6 +6,14 @@ public class Event extends Task {
     String afterTo;
     String description;
 
+    /**
+     * Constructs an Event task with a description and time range.
+     * <p>
+     * The description should contain the keyword "from" to specify the start time 
+     * and "to" to specify the end time. If these are missing, default value "-" is assigned.
+     *
+     * @param description The full event description, including start ("from") and end ("to") times.
+     */
     public Event(String description) {
         super(description);
         String[] descriptionPartOne = description.split("from");

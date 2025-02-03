@@ -2,6 +2,11 @@ package task;
 
 public class ToDo extends Task {
 
+    /**
+     * Constructs a ToDo task with a description.
+     * <p>
+     * @param description The task description.
+     */
     public ToDo(String description) {
         super(description);
         System.out.println("ToDo task has been added:\n  " + this.toString());
