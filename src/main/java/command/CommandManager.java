@@ -156,4 +156,27 @@ public class CommandManager {
     public ArrayList<Task> getTaskList() {
         return taskList;
     }
+
+    /**
+     * Finds and displays tasks that contain the specified keyword.
+     * <p>
+     * @param matchWord The keyword to search for in task descriptions.
+     */
+    public void findTasks(String matchWord) {
+        System.out.println("You looking for these?");
+        System.out.println("(Numbers represent that task's number, for deleting and marking etc.)");
+        matchWord = matchWord.toLowerCase(); 
+        boolean found = false;
+        for (Task task : taskList) {
+            if (task.getDescription().toLowerCase().contains(matchWord)) {
+                System.out.println(task.getTaskNumber() + "." + task);
+                found = true;
+            }
+        }
+        if (!found) {
+            System.out.println("You have no matching tasks :(");
+        }
+        System.out.println();
+    }
+
 }

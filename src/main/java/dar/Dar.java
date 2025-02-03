@@ -26,6 +26,7 @@ public class Dar {
         instructionMap.put("deadline", commandManager::addDeadline);
         instructionMap.put("event", commandManager::addEvent);
         instructionMap.put("delete", commandManager::deleteTask);
+        instructionMap.put("find", commandManager::findTasks);
 
         Scanner scanner = new Scanner(System.in);
 
