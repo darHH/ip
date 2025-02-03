@@ -47,6 +47,13 @@ public abstract class Task {
     
     public abstract String toDataFormat();
 
+    /**
+     * Converts a String (e.g from Storage and dardata.txt) from data format into a Task object (either T, D, E).
+     * <p>
+     * @param dataLine A string representing a task in data format.
+     * @return The corresponding Task object.
+     * @throws IllegalArgumentException If the task type is unknown.
+     */
     public static Task fromDataFormat(String dataLine) {
         String[] parts = dataLine.split(" \\| ");
         String typeTask = parts[0];

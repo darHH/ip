@@ -6,11 +6,12 @@ public class Parser {
 
     public Parser(String inputText) {
 
+        // Split the input text after first word, into two sections.
         String[] inputParts = inputText.trim().split(" ", 2); 
-
-        this.commandWord = inputParts[0].toLowerCase(); // Extract the first word
-
-        this.descriptionText = (inputParts.length > 1) ? inputParts[1] : ""; // Extract the rest
+        // Extract the first word
+        this.commandWord = inputParts[0].toLowerCase(); 
+        // Extract the rest
+        this.descriptionText = (inputParts.length > 1) ? inputParts[1] : ""; 
     }
 
     public String getCommandWord() {

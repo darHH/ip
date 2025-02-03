@@ -24,11 +24,21 @@ public class Deadline extends Task {
         System.out.println("Now you have " + Task.getTotalTasks() + " task(s) in your list.\n");
     }
     
-    // Function to save date and time, date has to be in DD/MM/YYYY, time has to be in 24 hour DDMM format
-    // Extract consecutive digits and check if it matches above two formats, if it does save as Local Date or Time, else send a message. 
+    /**
+     * Extracts and saves a valid date and/or time from the given description.
+     * <p>
+     * This method scans the input string for numerical sequences that match 
+     * either the date format (DD/MM/YYYY) or the time format (HHMM).
+     * Only if a valid date or time is found, it is saved as a `LocalDate` or `LocalTime`, respectively.
+     * Otherwise, a message is displayed indicating an invalid format
+     *
+     * @param description The input string containing date and/or time.
+     */
     public void saveDateTime(String description) {
         ArrayList<String> numberSequence = new ArrayList<>();
         StringBuilder currentNumber = new StringBuilder();
+
+        // Extract the digits and slashes that might represent dates or times
         for (char ch : description.toCharArray()) {
             if (Character.isDigit(ch) || ch == '/') {
                 currentNumber.append(ch); // Add digit to the current sequence
@@ -44,6 +54,7 @@ public class Deadline extends Task {
         }
         boolean validDateOrTime = false;
 
+        // Check extracted sequences for valid date or time formats
         for (String element : numberSequence) {
             if (element.matches("\\d{2}/\\d{2}/\\d{4}")) {
                 DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
@@ -56,6 +67,7 @@ public class Deadline extends Task {
             } 
         }
 
+        // Handle invalid input cases
         if (!validDateOrTime) {
             afterBy = "-";
             System.out.println("(Invalid Date/Time - Date should be in DD/MM/YYYY and Time in HHMM format)");

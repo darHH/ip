@@ -14,22 +14,34 @@ public class Storage {
         doesFileExist();
     }
 
-    // Your code must handle the case where the data file doesn't exist at the start.
+    /**
+     * Ensures that the data file and its parent directory exist.
+     * <p>
+     * If the parent directory or data file does not exist, it is created.
+     * If an error occurs during file creation, an error message is displayed.
+     */
     private void doesFileExist() {
         try {
             File file = new File(filePath);
             if (file.getParentFile() != null && !file.getParentFile().exists()) {
-                file.getParentFile().mkdirs(); // Create parent directory
+                file.getParentFile().mkdirs();
             }
             if (!file.exists()) {
-                file.createNewFile(); // Create file if it doesn't exist
+                file.createNewFile();
             }
         } catch (IOException e) {
             System.out.println("Error creating file: " + e.getMessage());
         }
     }
 
-    // Saves tasks to the file
+    /**
+     * Saves a list of tasks to the specified file (data/dardata.txt).
+     * <p>
+     * Each task is converted into data format before being saved.
+     * If an error occurs during writing, an error message is displayed.
+     *
+     * @param tasks The list of tasks to save.
+     */
     public void saveTasks(ArrayList<Task> tasks) {
         try (FileWriter writer = new FileWriter(filePath)) {
             for (Task task : tasks) {
@@ -40,7 +52,14 @@ public class Storage {
         }
     }
 
-    // Loads tasks from the file
+    /**
+     * Loads tasks from the specified file and returns them as an array list.
+     * <p>
+     * Each line in the file is converted into a `Task` object.
+     * If an error occurs while reading a line, an error message is displayed, and skipped.
+     *
+     * @return An array list of tasks loaded from the dardata.txt file. If the file does not exist or is empty, an empty list is returned.
+     */
     public ArrayList<Task> loadTasks() {
         ArrayList<Task> tasks = new ArrayList<>();
         try (Scanner scanner = new Scanner(new File(filePath))) {
