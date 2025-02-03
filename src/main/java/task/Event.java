@@ -9,7 +9,7 @@ public class Event extends Task {
     /**
      * Constructs an Event task with a description and time range.
      * <p>
-     * The description should contain the keyword "from" to specify the start time 
+     * The description should contain the keyword "from" to specify the start time
      * and "to" to specify the end time. If these are missing, default value "-" is assigned.
      *
      * @param description The full event description, including start ("from") and end ("to") times.

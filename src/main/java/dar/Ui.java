@@ -10,7 +10,7 @@ public class Ui {
      * <p>
      * This method does not return anything.
      */
-    public void showGreetingMessage(){
+    public void showGreetingMessage() {
         System.out.println("Hey buddy! The name's Dar, what can I do for you today?\n");
     }
 
@@ -24,7 +24,7 @@ public class Ui {
     }
 
     /**
-     * Displays error message when input (first word) is an unknown command 
+     * Displays error message when input (first word) is an unknown command
      * <p>
      * This method does not return anything.
      */

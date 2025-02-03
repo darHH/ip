@@ -7,7 +7,10 @@ import command.CommandManager;
 
 public class Dar {
 
-    /** This HashMap links command strings (e.g., "todo", "list", "delete") to their corresponding Consumer functions that execute the commands. */
+    /**
+     * This HashMap links command strings (e.g., "todo", "list", "delete")
+     * to their corresponding Consumer functions that execute the commands.
+     */
     private static final HashMap<String, Consumer<String>> instructionMap = new HashMap<>();
     private static final Storage storage = new Storage("./data/dardata.txt");
     private static final CommandManager commandManager = new CommandManager(storage);

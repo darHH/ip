@@ -42,7 +42,7 @@ public class CommandManager {
      * If the given task number is invalid, an error message is shown.
      *
      * @param input The task number as a string
-     */    
+     */
     public void markTask(String input) {
         try {
             int taskNumber = Integer.parseInt(input);
@@ -62,7 +62,7 @@ public class CommandManager {
      * If the given task number is invalid, an error message is displayed.
      *
      * @param input The task number as a string
-     */    
+     */
     public void unmarkTask(String input) {
         try {
             int taskNumber = Integer.parseInt(input);
@@ -96,7 +96,8 @@ public class CommandManager {
     /**
      * Adds a new Deadline task to the task list and saves it to storage.
      * <p>
-     * The description should include both the task details and the deadline in a specific format (after "by" in DD/MM/YYYY and HHMM).
+     * The description should include both the task details and the deadline in a specific format
+     * (after "by" in DD/MM/YYYY and HHMM).
      * If the description is empty or contains only whitespace, an error message is displayed.
      *
      * @param description The description of the Deadline task, including the deadline date/time.
@@ -165,7 +166,7 @@ public class CommandManager {
     public void findTasks(String matchWord) {
         System.out.println("You looking for these?");
         System.out.println("(Numbers represent that task's number, for deleting and marking etc.)");
-        matchWord = matchWord.toLowerCase(); 
+        matchWord = matchWord.toLowerCase();
         boolean found = false;
         for (Task task : taskList) {
             if (task.getDescription().toLowerCase().contains(matchWord)) {

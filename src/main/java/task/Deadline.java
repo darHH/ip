@@ -23,11 +23,11 @@ public class Deadline extends Task {
         System.out.println("Deadline task has been added:\n  " + this.toString());
         System.out.println("Now you have " + Task.getTotalTasks() + " task(s) in your list.\n");
     }
-    
+
     /**
      * Extracts and saves a valid date and/or time from the given description.
      * <p>
-     * This method scans the input string for numerical sequences that match 
+     * This method scans the input string for numerical sequences that match
      * either the date format (DD/MM/YYYY) or the time format (HHMM).
      * Only if a valid date or time is found, it is saved as a `LocalDate` or `LocalTime`, respectively.
      * Otherwise, a message is displayed indicating an invalid format

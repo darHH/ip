@@ -59,7 +59,7 @@ public class Storage {
      * Each line in the file is converted into a `Task` object.
      * If an error occurs while reading a line, an error message is displayed, and skipped.
      *
-     * @return An array list of tasks loaded from the dardata.txt file. If the file does not exist or is empty, an empty list is returned.
+     * @return An array list of tasks loaded from the dardata.txt file.
      */
     public ArrayList<Task> loadTasks() {
         ArrayList<Task> tasks = new ArrayList<>();
