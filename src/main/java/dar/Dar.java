@@ -2,6 +2,7 @@ package dar;
 import java.util.HashMap;
 import java.util.Scanner;
 import java.util.function.Consumer;
+
 import command.CommandManager;
 
 public class Dar {
@@ -10,9 +11,8 @@ public class Dar {
     private static final HashMap<String, Consumer<String>> instructionMap = new HashMap<>();
     private static final Storage storage = new Storage("./data/dardata.txt");
     private static final CommandManager commandManager = new CommandManager(storage);
-
     public static void main(String[] args) {
-        // Initialization and bot start up 
+        // Initialization and bot start up
         Ui ui = new Ui();
 
         // Greeting
@@ -56,8 +56,7 @@ public class Dar {
                 ui.showUnknownInputMessage();
             }
         }
-
-        // Exit 
+        // Exit
         scanner.close();
         ui.showExitMessage();
     }

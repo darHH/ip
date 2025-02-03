@@ -1,7 +1,7 @@
 package dar;
 
 public class Ui {
-    public Ui(){
+    public Ui() {
         // Empty constructor
     }
 
@@ -29,8 +29,8 @@ public class Ui {
      * This method does not return anything.
      */
     public void showUnknownInputMessage() {
-        System.out.println("My apologies, I don't understand what you mean! Let my dev know and I may get it next time :D \n");
-    }    
+        System.out.println("My apologies, I don't understand what you mean! Please let my dev know :D \n");
+    }
 
     /**
      * Displays exit message, when input is "bye"
@@ -39,6 +39,6 @@ public class Ui {
      */
     public void showExitMessage() {
         System.out.println("I'll see ya around, take it easy bud!\n");
-    }    
- 
+    }
+
 }
