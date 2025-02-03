@@ -97,7 +97,7 @@ public class CommandManager {
             System.out.println("Invalid task number for deletion.");
         }
     }
-    
+
     public ArrayList<Task> getTaskList() {
         return taskList;
     }

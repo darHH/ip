@@ -1,11 +1,11 @@
 package dar;
 
 public class Ui {
-    public Ui(){
+    public Ui() {
         // Empty constructor
     }
 
-    public void showGreetingMessage(){
+    public void showGreetingMessage() {
         System.out.println("Hey buddy! The name's Dar, what can I do for you today?\n");
     }
 
@@ -14,11 +14,11 @@ public class Ui {
     }
 
     public void showUnknownInputMessage() {
-        System.out.println("My apologies, I don't understand what you mean! Let my dev know and I may get it next time :D \n");
-    }    
+        System.out.println("My apologies, I don't understand what you mean! Please let my dev know :D \n");
+    }
 
     public void showExitMessage() {
         System.out.println("I'll see ya around, take it easy bud!\n");
-    }    
- 
+    }
+
 }

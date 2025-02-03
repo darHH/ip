@@ -1,9 +1,9 @@
 package task;
 
 public abstract class Task {
+    private static int totalTasks = 0;
     protected String description;
     protected boolean isDone;
-    static int totalTasks = 0;
     private int taskNumber;
 
     public Task(String description) {
@@ -44,7 +44,7 @@ public abstract class Task {
     public void totalTasksMinusOne() {
         totalTasks--;
     }
-    
+
     public abstract String toDataFormat();
 
     public static Task fromDataFormat(String dataLine) {
@@ -74,4 +74,4 @@ public abstract class Task {
     }
 
 }
-    
+
