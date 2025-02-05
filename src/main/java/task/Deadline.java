@@ -52,23 +52,23 @@ public class Deadline extends Task {
         if (currentNumber.length() > 0) {
             numberSequence.add(currentNumber.toString());
         }
-        boolean validDateOrTime = false;
+        boolean  isValidDateOrTime = false;
 
         // Check extracted sequences for valid date or time formats
         for (String element : numberSequence) {
             if (element.matches("\\d{2}/\\d{2}/\\d{4}")) {
                 DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
                 deadlineDate = LocalDate.parse(element, dateFormatter);
-                validDateOrTime = true;
+                isValidDateOrTime = true;
             } else if (element.matches("\\d{4}")) {
                 DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern("HHmm");
                 deadlineTime = LocalTime.parse(element, timeFormatter);
-                validDateOrTime = true;
+                isValidDateOrTime = true;
             }
         }
 
         // Handle invalid input cases
-        if (!validDateOrTime) {
+        if (! isValidDateOrTime) {
             afterBy = "-";
             System.out.println("(Invalid Date/Time - Date should be in DD/MM/YYYY and Time in HHMM format)");
         } else {

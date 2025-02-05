@@ -12,7 +12,7 @@ public class Storage {
 
     public Storage(String filePath) {
         this.filePath = filePath;
-        doesFileExist();
+        createFileAndDirectoryIfNotExists();
     }
 
     /**
@@ -21,7 +21,7 @@ public class Storage {
      * If the parent directory or data file does not exist, it is created.
      * If an error occurs during file creation, an error message is displayed.
      */
-    private void doesFileExist() {
+    private void createFileAndDirectoryIfNotExists() {
         try {
             File file = new File(filePath);
             if (file.getParentFile() != null && !file.getParentFile().exists()) {

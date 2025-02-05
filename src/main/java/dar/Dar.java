@@ -5,6 +5,12 @@ import java.util.function.Consumer;
 
 import command.CommandManager;
 
+/**
+ * Main class for the Dar task management application. This class serves as the entry point
+ * and handles user interaction through a command-line interface.
+ * 
+ * Tasks are persisted to a file and loaded on startup.
+ */
 public class Dar {
 
     /**
@@ -12,8 +18,26 @@ public class Dar {
      * to their corresponding Consumer functions that execute the commands.
      */
     private static final HashMap<String, Consumer<String>> instructionMap = new HashMap<>();
+
+    /**
+     * Handles persistence of tasks to and from disk storage.
+     * Tasks are stored in "./data/dardata.txt".
+     */
     private static final Storage storage = new Storage("./data/dardata.txt");
+
+    /**
+     * Manages the execution of commands and maintains the task list.
+     */
     private static final CommandManager commandManager = new CommandManager(storage);
+
+    /**
+     * Entry point for Dar.
+     * Initializes the system, processes user commands, and handles program termination.
+     * The program runs in a loop until the user enters "bye".
+     * All tasks are saved to storage when the program exits.
+     *
+     * @param args Command line arguments (not used)
+     */
     public static void main(String[] args) {
         // Initialization and bot start up
         Ui ui = new Ui();

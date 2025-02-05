@@ -141,7 +141,7 @@ public class CommandManager {
         try {
             int taskNumber = Integer.parseInt(input);
             Task task = taskList.remove(taskNumber - 1);
-            task.totalTasksMinusOne();
+            task.decrementTotalTasksCount();
             for (int i = 0; i < taskList.size(); i++) {
                 taskList.get(i).updateTaskNumber(i + 1); // Update remaining task numbers
             }

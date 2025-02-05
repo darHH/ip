@@ -41,7 +41,7 @@ public abstract class Task {
         this.taskNumber = newTaskNumber;
     }
 
-    public void totalTasksMinusOne() {
+    public void decrementTotalTasksCount() {
         totalTasks--;
     }
 

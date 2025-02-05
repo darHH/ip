@@ -29,7 +29,7 @@ Here's your list, better get going!
 2.[D][ ] return book  (By: - -)
 3.[E][ ] project meeting (From: monday To: tuesday)
 
-My apologies, I don't understand what you mean! Let my dev know and I may get it next time :D 
+My apologies, I don't understand what you mean! Please let my dev know :D 
 
 Oops! You entered nothing. Try again.
 
@@ -45,7 +45,7 @@ Roger that, this task has been removed:
 [E][ ] project meeting (From: monday To: tuesday)
 Now you have 0 task(s) in your list.
 
-Here's your list, better get going!
+Nice, your list is empty, you deserve a break! :)
 
 I'll see ya around, take it easy bud!
 
