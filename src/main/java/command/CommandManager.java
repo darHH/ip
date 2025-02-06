@@ -29,42 +29,46 @@ public class CommandManager {
     }
 
     /**
-     * Displays all tasks in the list in order of its task number.
+     * Returns string of all tasks in the list in order of its task number.
      * <p>
-     * If the task list is empty, displays a message indicating no tasks.
+     * If the task list is empty, return a String message indicating no tasks.
      * <p>
      * This method does not return anything.
      */
-    public void listTasks() {
+    public String listTasks() {
         if (taskList.isEmpty()) {
-            System.out.println("Nice, your list is empty, you deserve a break! :)\n");
+            return "Nice, your list is empty, you deserve a break! :)\n";
         } else {
-            System.out.println("Here's your list, better get going!");
+            StringBuilder response = new StringBuilder("Here's your list, better get going!\n");
             for (int i = 0; i < taskList.size(); i++) {
                 Task task = taskList.get(i);
-                System.out.println(task.getTaskNumber() + "." + task);
+                response.append(task.getTaskNumber()).append(". ").append(task).append("\n");
             }
-            System.out.println();
+            return response.toString();
         }
     }
 
     /**
-     * Marks the specified task as done, then displays the marked task.
+     * Marks the specified task as done, then returns a String of the marked task.
      * <p>
      * If the given task number is invalid, an error message is shown.
      *
      * @param input The task number as a string
      */
-    public void markTask(String input) {
+    public String markTask(String input) {
         try {
             int taskNumber = Integer.parseInt(input);
             Task task = taskList.get(taskNumber - 1);
             task.setMark();
             storage.saveTasks(taskList);
-            System.out.println("Good job, one less task to worry about:");
-            System.out.println(task + "\n");
+            
+            return "Good job, one less task to worry about:\n" + task + "\n";
+        } catch (NumberFormatException e) {
+            return "Invalid input. Please enter a valid task number to mark.";
+        } catch (IndexOutOfBoundsException e) {
+            return "Invalid task number. Please choose a valid task.";
         } catch (Exception e) {
-            System.out.println("Invalid task number for marking.");
+            return "An error occurred while marking the task.";
         }
     }
 
@@ -75,16 +79,20 @@ public class CommandManager {
      *
      * @param input The task number as a string
      */
-    public void unmarkTask(String input) {
+    public String unmarkTask(String input) {
         try {
             int taskNumber = Integer.parseInt(input);
             Task task = taskList.get(taskNumber - 1);
             task.setUnmark();
             storage.saveTasks(taskList);
-            System.out.println("Oh okay, this task has been unmarked:");
-            System.out.println(task + "\n");
+            
+            return "Oh okay, this task has been unmarked:\n" + task + "\n";
+        } catch (NumberFormatException e) {
+            return "Invalid input. Please enter a valid task number to unmark.";
+        } catch (IndexOutOfBoundsException e) {
+            return "Invalid task number. Please choose a valid task.";
         } catch (Exception e) {
-            System.out.println("Invalid task number for unmarking.");
+            return "An error occurred while unmarking the task.";
         }
     }
 
@@ -95,13 +103,15 @@ public class CommandManager {
      *
      * @param description The description of the ToDo task.
      */
-    public void addTodo(String description) {
+    public String addTodo(String description) {
         if (!description.trim().isEmpty()) {
             Task task = new ToDo(description);
             taskList.add(task);
             storage.saveTasks(taskList);
+            
+            return "Got it! I've added this todo:\n" + task + "\n";
         } else {
-            System.out.println("The description of a todo task cannot be empty :<\n");
+            return "The description of a todo task cannot be empty :<\n";
         }
     }
 
@@ -114,13 +124,15 @@ public class CommandManager {
      *
      * @param description The description of the Deadline task, including the deadline date/time.
      */
-    public void addDeadline(String description) {
+    public String addDeadline(String description) {
         if (!description.trim().isEmpty()) {
             Task task = new Deadline(description);
             taskList.add(task);
             storage.saveTasks(taskList);
+            
+            return "Got it! I've added this deadline:\n" + task + "\n";
         } else {
-            System.out.println("The description of a deadline task cannot be empty :<\n");
+            return "The description of a deadline task cannot be empty :<\n";
         }
     }
 
@@ -132,13 +144,15 @@ public class CommandManager {
      *
      * @param description The description of the Event task, including start and end time.
      */
-    public void addEvent(String description) {
+    public String addEvent(String description) {
         if (!description.trim().isEmpty()) {
             Task task = new Event(description);
             taskList.add(task);
             storage.saveTasks(taskList);
+            
+            return "Got it! I've added this event:\n" + task + "\n";
         } else {
-            System.out.println("The description of an event task cannot be empty :<\n");
+            return "The description of an event task cannot be empty :<\n";
         }
     }
 
@@ -149,20 +163,28 @@ public class CommandManager {
      *
      * @param input The task number as a string.
      */
-    public void deleteTask(String input) {
+    public String deleteTask(String input) {
         try {
             int taskNumber = Integer.parseInt(input);
             Task task = taskList.remove(taskNumber - 1);
             task.decrementTotalTasksCount();
+    
+            // Update remaining task numbers
             for (int i = 0; i < taskList.size(); i++) {
-                taskList.get(i).updateTaskNumber(i + 1); // Update remaining task numbers
+                taskList.get(i).updateTaskNumber(i + 1);
             }
+    
             storage.saveTasks(taskList);
-            System.out.println("Roger that, this task has been removed:");
-            System.out.println(task);
-            System.out.println("Now you have " + Task.getTotalTasks() + " task(s) in your list.\n");
+    
+            return "Roger that, this task has been removed:\n" + task +
+                   "\nNow you have " + Task.getTotalTasks() + " task(s) in your list.\n";
+    
+        } catch (NumberFormatException e) {
+            return "Invalid input. Please enter a valid task number for deletion.";
+        } catch (IndexOutOfBoundsException e) {
+            return "Invalid task number. Please choose a valid task.";
         } catch (Exception e) {
-            System.out.println("Invalid task number for deletion.");
+            return "An error occurred while deleting the task.";
         }
     }
 
@@ -175,21 +197,25 @@ public class CommandManager {
      * <p>
      * @param matchWord The keyword to search for in task descriptions.
      */
-    public void findTasks(String matchWord) {
-        System.out.println("You looking for these?");
-        System.out.println("(Numbers represent that task's number, for deleting and marking etc.)");
+    public String findTasks(String matchWord) {
+        StringBuilder response = new StringBuilder("You looking for these?\n");
+        response.append("(Numbers represent that task's number, for deleting and marking etc.)\n\n");
+    
         matchWord = matchWord.toLowerCase();
         boolean found = false;
+    
         for (Task task : taskList) {
             if (task.getDescription().toLowerCase().contains(matchWord)) {
-                System.out.println(task.getTaskNumber() + "." + task);
+                response.append(task.getTaskNumber()).append(". ").append(task).append("\n");
                 found = true;
             }
         }
+    
         if (!found) {
-            System.out.println("You have no matching tasks :(");
+            response.append("You have no matching tasks :(\n");
         }
-        System.out.println();
+    
+        return response.toString();
     }
 
 }

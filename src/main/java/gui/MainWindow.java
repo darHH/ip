@@ -9,6 +9,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 
 import dar.Dar;
+import dar.Ui;
 /**
  * Controller for the main GUI.
  */
@@ -23,6 +24,7 @@ public class MainWindow extends AnchorPane {
     private Button sendButton;
 
     private Dar dar;
+    private static final Ui ui = new Ui();
 
     private Image userImage = new Image(this.getClass().getResourceAsStream("/images/guest.png"));
     private Image darImage = new Image(this.getClass().getResourceAsStream("/images/oompa.png"));
@@ -35,6 +37,12 @@ public class MainWindow extends AnchorPane {
     /** Injects the Duke instance */
     public void setDar(Dar d) {
         dar = d;
+
+        // Show the greeting message when the chatbot starts
+        String greeting = ui.showGreetingMessage();
+        dialogContainer.getChildren().add(
+                DialogBox.getDukeDialog(greeting, darImage)
+        );
     }
 
     /**

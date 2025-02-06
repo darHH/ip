@@ -18,8 +18,8 @@ public class Ui {
      * <p>
      * This method does not return anything.
      */
-    public void showGreetingMessage() {
-        System.out.println("Hey buddy! The name's Dar, what can I do for you today?\n");
+    public String showGreetingMessage() {
+        return ("Hey buddy! The name's Dar, what can I do for you today?\n");
     }
 
     /**
@@ -27,8 +27,8 @@ public class Ui {
      * <p>
      * This method does not return anything.
      */
-    public void showInvalidInputMessage() {
-        System.out.println("Oops! You entered nothing. Try again.\n");
+    public String showInvalidInputMessage() {
+        return ("Oops! You entered nothing. Try again.\n");
     }
 
     /**
@@ -36,8 +36,8 @@ public class Ui {
      * <p>
      * This method does not return anything.
      */
-    public void showUnknownInputMessage() {
-        System.out.println("My apologies, I don't understand what you mean! Please let my dev know :D \n");
+    public String showUnknownInputMessage() {
+        return ("My apologies, I don't understand what you mean! Please let my dev know :D \n");
     }
 
     /**
@@ -45,8 +45,8 @@ public class Ui {
      * <p>
      * This method does not return anything.
      */
-    public void showExitMessage() {
-        System.out.println("I'll see ya around, take it easy bud!\n");
+    public String showExitMessage() {
+        return ("I'll see ya around, take it easy bud!\n");
     }
 
 }
