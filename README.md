@@ -27,4 +27,4 @@ Prerequisites: JDK 17, update Intellij to the most recent version.
 
 ## Darren's notes
 in ip, "./gradlew test" to auto test
-in text-ui-test, "./runtest.sh" to manual test
+in up, "./gradlew run" to open and test GUI 

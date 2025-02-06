@@ -61,7 +61,7 @@ public class CommandManager {
             Task task = taskList.get(taskNumber - 1);
             task.setMark();
             storage.saveTasks(taskList);
-            
+
             return "Good job, one less task to worry about:\n" + task + "\n";
         } catch (NumberFormatException e) {
             return "Invalid input. Please enter a valid task number to mark.";
@@ -85,7 +85,7 @@ public class CommandManager {
             Task task = taskList.get(taskNumber - 1);
             task.setUnmark();
             storage.saveTasks(taskList);
-            
+
             return "Oh okay, this task has been unmarked:\n" + task + "\n";
         } catch (NumberFormatException e) {
             return "Invalid input. Please enter a valid task number to unmark.";
@@ -108,7 +108,7 @@ public class CommandManager {
             Task task = new ToDo(description);
             taskList.add(task);
             storage.saveTasks(taskList);
-            
+
             return "Got it! I've added this todo:\n" + Task.getTotalTasks() + ". " + task + "\n";
         } else {
             return "The description of a todo task cannot be empty :<\n";
@@ -150,7 +150,7 @@ public class CommandManager {
             Task task = new Event(description);
             taskList.add(task);
             storage.saveTasks(taskList);
-            
+
             return "Got it! I've added this event:\n" + Task.getTotalTasks() + ". " + task + "\n";
         } else {
             return "The description of an event task cannot be empty :<\n";
@@ -169,17 +169,17 @@ public class CommandManager {
             int taskNumber = Integer.parseInt(input);
             Task task = taskList.remove(taskNumber - 1);
             task.decrementTotalTasksCount();
-    
+
             // Update remaining task numbers
             for (int i = 0; i < taskList.size(); i++) {
                 taskList.get(i).updateTaskNumber(i + 1);
             }
-    
+
             storage.saveTasks(taskList);
-    
-            return "Roger that, this task has been removed:\n" + task +
-                   "\nNow you have " + Task.getTotalTasks() + " task(s) in your list.\n";
-    
+
+            return "Roger that, this task has been removed:\n" + task
+                + "\nNow you have " + Task.getTotalTasks() + " task(s) in your list.\n";
+
         } catch (NumberFormatException e) {
             return "Invalid input. Please enter a valid task number for deletion.";
         } catch (IndexOutOfBoundsException e) {
@@ -201,21 +201,21 @@ public class CommandManager {
     public String findTasks(String matchWord) {
         StringBuilder response = new StringBuilder("You looking for these?\n");
         response.append("(Numbers represent that task's number, for deleting and marking etc.)\n\n");
-    
+
         matchWord = matchWord.toLowerCase();
         boolean found = false;
-    
+
         for (Task task : taskList) {
             if (task.getDescription().toLowerCase().contains(matchWord)) {
                 response.append(task.getTaskNumber()).append(". ").append(task).append("\n");
                 found = true;
             }
         }
-    
+
         if (!found) {
             response.append("You have no matching tasks :(\n");
         }
-    
+
         return response.toString();
     }
 

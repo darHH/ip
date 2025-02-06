@@ -2,13 +2,13 @@ package gui;
 
 import java.io.IOException;
 
+import dar.Dar;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
-import dar.Dar;
 
 /**
  * A GUI for Dar using FXML.
@@ -24,7 +24,7 @@ public class Main extends Application {
             AnchorPane ap = fxmlLoader.load();
             Scene scene = new Scene(ap);
             stage.setScene(scene);
-            fxmlLoader.<MainWindow>getController().setDar(dar);  // inject the Duke instance
+            fxmlLoader.<MainWindow>getController().setDar(dar); // inject the Duke instance
             stage.show();
         } catch (IOException e) {
             e.printStackTrace();

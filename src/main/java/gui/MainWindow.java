@@ -1,5 +1,7 @@
 package gui;
 
+import dar.Dar;
+import dar.Ui;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
@@ -8,12 +10,13 @@ import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 
-import dar.Dar;
-import dar.Ui;
 /**
  * Controller for the main GUI.
  */
 public class MainWindow extends AnchorPane {
+
+    private static final Ui ui = new Ui();
+
     @FXML
     private ScrollPane scrollPane;
     @FXML
@@ -24,7 +27,6 @@ public class MainWindow extends AnchorPane {
     private Button sendButton;
 
     private Dar dar;
-    private static final Ui ui = new Ui();
 
     private Image userImage = new Image(this.getClass().getResourceAsStream("/images/guest.png"));
     private Image darImage = new Image(this.getClass().getResourceAsStream("/images/oompa.png"));
