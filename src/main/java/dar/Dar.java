@@ -1,7 +1,7 @@
 package dar;
+
 import java.util.HashMap;
-import java.util.Scanner;
-import java.util.function.Consumer;
+import java.util.function.Function;
 
 import command.CommandManager;
 
@@ -15,9 +15,9 @@ public class Dar {
 
     /**
      * This HashMap links command strings (e.g., "todo", "list", "delete")
-     * to their corresponding Consumer functions that execute the commands.
+     * to their corresponding functions that return a response string.
      */
-    private static final HashMap<String, Consumer<String>> instructionMap = new HashMap<>();
+    private static final HashMap<String, Function<String, String>> instructionMap = new HashMap<>();
 
     /**
      * Handles persistence of tasks to and from disk storage.
@@ -30,22 +30,17 @@ public class Dar {
      */
     private static final CommandManager commandManager = new CommandManager(storage);
 
+
     /**
-     * Entry point for Dar.
-     * Initializes the system, processes user commands, and handles program termination.
-     * The program runs in a loop until the user enters "bye".
-     * All tasks are saved to storage when the program exits.
-     *
-     * @param args Command line arguments (not used)
+     * Handles user interface interactions.
      */
-    public static void main(String[] args) {
-        // Initialization and bot start up
-        Ui ui = new Ui();
+    private static final Ui ui = new Ui();
 
-        // Greeting
-        ui.showGreetingMessage();
-
-        // Filling in the Instruction Map
+    /**
+     * Initializes Dar and sets up the instruction map.
+     */
+    public Dar() {
+        // Filling in the Instruction Map with functions that return Strings
         instructionMap.put("list", parameter -> commandManager.listTasks());
         instructionMap.put("mark", commandManager::markTask);
         instructionMap.put("unmark", commandManager::unmarkTask);
@@ -54,38 +49,35 @@ public class Dar {
         instructionMap.put("event", commandManager::addEvent);
         instructionMap.put("delete", commandManager::deleteTask);
         instructionMap.put("find", commandManager::findTasks);
+    }
 
-        Scanner scanner = new Scanner(System.in);
-
-        // Continuously reads user input until "bye" is entered.
-        while (true) {
-            String inputText = scanner.nextLine().trim();
-            if (inputText.isEmpty()) {
-                ui.showInvalidInputMessage();
-                continue;
-            }
-
-            // Parse the user input into a command and description.
-            Parser parser = new Parser(inputText);
-            String commandWord = parser.getCommandWord();
-            String descriptionText = parser.getDescriptionText();
-
-            // If the user types "bye", save all tasks and exit the loop.
-            if (commandWord.equals("bye")) {
-                storage.saveTasks(commandManager.getTaskList()); // Save tasks on exit
-                break;
-
-            // If the command is recognized, execute the corresponding action.
-            } else if (instructionMap.containsKey(commandWord)) {
-                instructionMap.get(commandWord).accept(descriptionText);
-
-            // If the command is unknown, show an error message.
-            } else {
-                ui.showUnknownInputMessage();
-            }
+    /**
+     * Generates a response for the user's chat message.
+     * @param input User input string
+     * @return Response from Dar
+     */
+    public String getResponse(String input) {
+        if (input.trim().isEmpty()) {
+            return ui.showInvalidInputMessage();
         }
-        // Exit
-        scanner.close();
-        ui.showExitMessage();
+
+        // Parse the user input into a command and description
+        Parser parser = new Parser(input);
+        String commandWord = parser.getCommandWord();
+        String descriptionText = parser.getDescriptionText();
+
+        // Handle "bye" separately
+        if (commandWord.equals("bye")) {
+            storage.saveTasks(commandManager.getTaskList());
+            return ui.showExitMessage();
+        }
+
+        // If the command exists in instructionMap, execute and return response
+        if (instructionMap.containsKey(commandWord)) {
+            return instructionMap.get(commandWord).apply(descriptionText);
+        }
+
+        // If the command is unknown
+        return ui.showUnknownInputMessage();
     }
 }
