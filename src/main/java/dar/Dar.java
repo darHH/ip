@@ -88,4 +88,10 @@ public class Dar {
         scanner.close();
         ui.showExitMessage();
     }
+    /**
+     * Generates a response for the user's chat message.
+     */
+    public String getResponse(String input) {
+        return "Duke heard: " + input;
+    }
 }
