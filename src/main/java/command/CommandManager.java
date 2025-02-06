@@ -109,7 +109,7 @@ public class CommandManager {
             taskList.add(task);
             storage.saveTasks(taskList);
             
-            return "Got it! I've added this todo:\n" + task + "\n";
+            return "Got it! I've added this todo:\n" + Task.getTotalTasks() + ". " + task + "\n";
         } else {
             return "The description of a todo task cannot be empty :<\n";
         }
@@ -117,22 +117,23 @@ public class CommandManager {
 
     /**
      * Adds a new Deadline task to the task list and saves it to storage.
-     * <p>
-     * The description should include both the task details and the deadline in a specific format
-     * (after "by" in DD/MM/YYYY and HHMM).
-     * If the description is empty or contains only whitespace, an error message is displayed.
+     * If the description is empty or the date/time format is invalid, an error message is returned.
      *
      * @param description The description of the Deadline task, including the deadline date/time.
+     * @return A success message or an error message if the input is invalid.
      */
     public String addDeadline(String description) {
-        if (!description.trim().isEmpty()) {
+        if (description.trim().isEmpty()) {
+            return "The description of a deadline task cannot be empty :<\n";
+        }
+
+        try {
             Task task = new Deadline(description);
             taskList.add(task);
             storage.saveTasks(taskList);
-            
-            return "Got it! I've added this deadline:\n" + task + "\n";
-        } else {
-            return "The description of a deadline task cannot be empty :<\n";
+            return "Got it! I've added this deadline:\n" + Task.getTotalTasks() + ". " + task + "\n";
+        } catch (IllegalArgumentException e) {
+            return e.getMessage();
         }
     }
 
@@ -150,7 +151,7 @@ public class CommandManager {
             taskList.add(task);
             storage.saveTasks(taskList);
             
-            return "Got it! I've added this event:\n" + task + "\n";
+            return "Got it! I've added this event:\n" + Task.getTotalTasks() + ". " + task + "\n";
         } else {
             return "The description of an event task cannot be empty :<\n";
         }
