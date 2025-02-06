@@ -52,7 +52,7 @@ public class Deadline extends Task {
         if (currentNumber.length() > 0) {
             numberSequence.add(currentNumber.toString());
         }
-        boolean  isValidDateOrTime = false;
+        boolean isValidDateOrTime = false;
 
         // Check extracted sequences for valid date or time formats
         for (String element : numberSequence) {
@@ -68,7 +68,7 @@ public class Deadline extends Task {
         }
 
         // Handle invalid input cases
-        if (! isValidDateOrTime) {
+        if (!isValidDateOrTime) {
             afterBy = "-";
             System.out.println("(Invalid Date/Time - Date should be in DD/MM/YYYY and Time in HHMM format)");
         } else {

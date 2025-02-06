@@ -8,7 +8,7 @@ import command.CommandManager;
 /**
  * Main class for the Dar task management application. This class serves as the entry point
  * and handles user interaction through a command-line interface.
- * 
+ *
  * Tasks are persisted to a file and loaded on startup.
  */
 public class Dar {

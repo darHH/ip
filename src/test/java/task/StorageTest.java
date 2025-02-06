@@ -1,12 +1,16 @@
 package task;
+import static org.junit.jupiter.api.Assertions.assertEquals; // Static Import
 
-import dar.Storage;
-import org.junit.jupiter.api.Test;
+// Standard Java Package Imports
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+// Special Imports (JUnit)
+import org.junit.jupiter.api.Test;
+
+// Custom Imports
+import dar.Storage;
 
 public class StorageTest {
     @Test
