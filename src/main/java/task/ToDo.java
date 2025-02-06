@@ -1,5 +1,8 @@
 package task;
 
+/**
+ * Represents a ToDo task, which contains only a description and a status
+ */
 public class ToDo extends Task {
 
     /**

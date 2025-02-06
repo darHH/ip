@@ -7,10 +7,22 @@ import task.Event;
 import task.Task;
 import task.ToDo;
 
+/**
+ * The CommandManager class manages the list of tasks and handles commands to manipulate them.
+ * <p>
+ * The task list is loaded from and saved to a `Storage` object, ensuring persistence of tasks across program sessions.
+ * <p>
+ * The class interprets user commands and interacts with the task list to perform the requested actions.
+ */
 public class CommandManager {
     private final ArrayList<Task> taskList;
     private final Storage storage;
 
+    /**
+     * Constructs a CommandManager instance that manages the list of tasks.
+     *
+     * @param storage The storage object used to load and save tasks.
+     */
     public CommandManager(Storage storage) {
         this.taskList = new ArrayList<>(storage.loadTasks()); // Load tasks from storage
         this.storage = storage;

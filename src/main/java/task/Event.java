@@ -1,5 +1,10 @@
 package task;
 
+/**
+ * Represents an Event task, which includes a description, start time, and end time.
+ * <p>
+ * This class extends the Task class and adds functionality for handling time-bound events.
+ */
 public class Event extends Task {
 
     private String afterFrom;

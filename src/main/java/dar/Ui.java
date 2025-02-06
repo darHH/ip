@@ -1,6 +1,14 @@
 package dar;
 
+/**
+ * The Ui class handles the display of messages to the user.
+ * <p>
+ */
 public class Ui {
+
+    /**
+     * Constructs a new Ui instance.
+     */
     public Ui() {
         // Empty constructor
     }

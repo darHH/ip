@@ -7,9 +7,20 @@ import java.util.Scanner;
 
 import task.Task;
 
+/**
+ * The Storage class handles the saving and loading of tasks to and from a specified file.
+ * <p>
+ * The class provides methods for saving tasks, loading tasks, and managing the file that stores the tasks.
+ * If the file or directory does not exist, it will be created automatically.
+ */
 public class Storage {
     private String filePath;
 
+    /**
+     * Constructs a new Storage instance with the specified file path.
+     *
+     * @param filePath The path to the file where tasks will be saved or loaded.
+     */
     public Storage(String filePath) {
         this.filePath = filePath;
         createFileAndDirectoryIfNotExists();

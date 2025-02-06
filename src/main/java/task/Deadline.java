@@ -4,6 +4,9 @@ import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
+/**
+ * Represents a Deadline task, which includes a description and a deadline with both date and time.
+ */
 public class Deadline extends Task {
 
     private String afterBy;
@@ -11,6 +14,17 @@ public class Deadline extends Task {
     private LocalDate deadlineDate;
     private LocalTime deadlineTime;
 
+    /**
+     * Constructs a Deadline task with a description and deadline.
+     * <p>
+     * The deadline is specified after the "by" keyword. The date and time are
+     * saved as LocalDate and LocalTime objects respectively.
+     * If the date or time is invalid or missing,
+     * default values are assigned, and an error message is shown.
+     *
+     * @param description The full description of the deadline task,
+     *      including the "by" keyword followed by the date and time.
+     */
     public Deadline(String description) {
         super(description);
         String[] descriptionParts = description.split("by");
