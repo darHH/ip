@@ -54,11 +54,18 @@ public abstract class Task {
         return totalTasks;
     }
 
+    /**
+     * Updates task number of this task, for when other task is deleted
+     * <p>
+     * @param newTaskNumber The new task number of the task.
+     */
     public void updateTaskNumber(int newTaskNumber) {
         assert this.taskNumber >= 0 : "Task number cannot be negative";
         this.taskNumber = newTaskNumber;
     }
-
+    /**
+     * Decreases total number of tasks, for when other task is deleted
+     */
     public void decrementTotalTasksCount() {
         assert totalTasks > 0 : "Total tasks cannot be negative";
         totalTasks--;

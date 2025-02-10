@@ -18,7 +18,7 @@ public class Deadline extends Task {
     /**
      * Constructs a Deadline task and extracts its deadline details.
      * <p>
-     * Calls {@code parseDescription} to extract the task description and deadline 
+     * Calls {@code parseDescription} to extract the task description and deadline
      *
      * @param description The task description, including the "by" keyword followed by the deadline.
      */
@@ -30,8 +30,8 @@ public class Deadline extends Task {
     /**
      * Parses the task description to extract the deadline details.
      * <p>
-     * This method splits the input based on the "by" keyword to separate the task 
-     * description from the deadline. The extracted deadline is validated and stored. 
+     * This method splits the input based on the "by" keyword to separate the task
+     * description from the deadline. The extracted deadline is validated and stored.
      *
      * @param description The input string containing the task details and deadline.
      * @throws IllegalArgumentException If the deadline format is invalid.
@@ -75,7 +75,8 @@ public class Deadline extends Task {
      * @param numberSequence The list to store extracted numeric sequences.
      * @param currentNumber A StringBuilder used to accumulate individual numeric sequences.
      */
-    private void extractNumericSequences(String description, ArrayList<String> numberSequence, StringBuilder currentNumber) {
+    private void extractNumericSequences(String description, ArrayList<String>
+        numberSequence, StringBuilder currentNumber) {
         for (char ch : description.toCharArray()) {
             if (Character.isDigit(ch) || ch == '/') {
                 currentNumber.append(ch); // Add digit to the current sequence

@@ -39,9 +39,9 @@ public class CommandManager {
         if (taskList.isEmpty()) {
             return "Nice, your list is empty, you deserve a break! :)\n";
         }
-        
-        return "Here's your list, better get going!\n" + 
-               taskList.stream()
+
+        return "Here's your list, better get going!\n"
+               + taskList.stream()
                    .map(task -> task.getTaskNumber() + ". " + task)
                    .reduce("", (a, b) -> a + b + "\n");
     }
@@ -197,14 +197,14 @@ public class CommandManager {
      * @param matchWord The keyword to search for in task descriptions.
      */
     public String findTasks(String matchWord) {
-        String header = "You looking for these?\n" +
-                       "(Numbers represent that task's number, for deleting and marking etc.)\n\n";
-        
+        String header = "You looking for these?\n"
+                       + "(Numbers represent that task's number, for deleting and marking etc.)\n\n";
+
         String matches = taskList.stream()
             .filter(task -> task.getDescription().toLowerCase().contains(matchWord.toLowerCase()))
             .map(task -> task.getTaskNumber() + ". " + task)
             .reduce("", (a, b) -> a + b + "\n");
-        
+
         return header + (matches.isEmpty() ? "You have no matching tasks :(\n" : matches);
     }
 

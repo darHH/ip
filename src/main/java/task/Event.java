@@ -26,8 +26,8 @@ public class Event extends Task {
     /**
      * Parses the event description to extract the time range.
      * <p>
-     * Splits the input based on the "from" keyword to extract the start time 
-     * and the "to" keyword to extract the end time. If either is missing, 
+     * Splits the input based on the "from" keyword to extract the start time
+     * and the "to" keyword to extract the end time. If either is missing,
      * a default value ("-") is assigned.
      *
      * @param description The input string containing the event details and time range.
