@@ -48,14 +48,18 @@ public class Event extends Task {
             this.afterTo = "-";
 
         }
-        System.out.println("Event task has been added:\n  " + this.toString());
-        System.out.println("Now you have " + Task.getTotalTasks() + " task(s) in your list.\n");
+    }
+
+
+    @Override
+    public String getDescription() {
+        return this.description;
     }
 
     @Override
     public String toString() {
         return "[E][" + this.getStatusIcon() + "] " + this.description
-                + "(From: " + this.afterFrom + " To: " + this.afterTo + ")";
+                + " (From: " + this.afterFrom + " To: " + this.afterTo + ")";
     }
 
     @Override

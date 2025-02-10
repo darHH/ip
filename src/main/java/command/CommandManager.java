@@ -1,5 +1,6 @@
 package command;
 import java.util.ArrayList;
+import java.util.List;
 
 import dar.Storage;
 import task.Deadline;
@@ -102,14 +103,16 @@ public class CommandManager {
      * @param description The description of the ToDo task.
      */
     public String addTodo(String description) {
-        if (!description.trim().isEmpty()) {
-            Task task = new ToDo(description);
-            taskList.add(task);
-            storage.saveTasks(taskList);
-
-            return "Got it! I've added this todo:\n" + Task.getTotalTasks() + ". " + task + "\n";
-        } else {
+        if (description.trim().isEmpty()) {
             return "The description of a todo task cannot be empty :<\n";
+        }
+        Task task = new ToDo(description);
+        taskList.add(task);
+        storage.saveTasks(taskList);
+        if (isDuplicate(task)) {
+            return "This task has duplicates, you can delete tasks using 'delete (task no.)'\n\n" + findDuplicates(task);
+        } else {
+            return "Got it! I've added this todo:\n" + Task.getTotalTasks() + ". " + task + "\n";
         }
     }
 
@@ -129,7 +132,11 @@ public class CommandManager {
             Task task = new Deadline(description);
             taskList.add(task);
             storage.saveTasks(taskList);
-            return "Got it! I've added this deadline:\n" + Task.getTotalTasks() + ". " + task + "\n";
+            if (isDuplicate(task)) {
+                return "This task has duplicates, you can delete tasks using 'delete (task no.)'\n\n" + findDuplicates(task);
+            } else {
+                return "Got it! I've added this deadline:\n" + Task.getTotalTasks() + ". " + task + "\n";
+            }
         } catch (IllegalArgumentException e) {
             return e.getMessage();
         }
@@ -144,15 +151,17 @@ public class CommandManager {
      * @param description The description of the Event task, including start and end time.
      */
     public String addEvent(String description) {
-        if (!description.trim().isEmpty()) {
-            Task task = new Event(description);
-            taskList.add(task);
-            storage.saveTasks(taskList);
-
-            return "Got it! I've added this event:\n" + Task.getTotalTasks() + ". " + task + "\n";
-        } else {
+        if (description.trim().isEmpty()) {
             return "The description of an event task cannot be empty :<\n";
         }
+        Task task = new Event(description);
+        taskList.add(task);
+        storage.saveTasks(taskList);
+        if (isDuplicate(task)) {
+            return "This task has duplicates, you can delete tasks using 'delete (task no.)'\n\n" + findDuplicates(task);
+        } else {
+            return "Got it! I've added this event:\n" + Task.getTotalTasks() + ". " + task + "\n";
+        } 
     }
 
     /**
@@ -208,4 +217,49 @@ public class CommandManager {
         return header + (matches.isEmpty() ? "You have no matching tasks :(\n" : matches);
     }
 
+    /**
+     * Finds and returns a list of duplicate tasks that have the same description as the given task.
+     * <p>
+     * @param newTask The task to check for duplicates.
+     * @return A string listing all duplicate tasks, including their task numbers.
+     */
+    public String findDuplicates(Task newTask) {
+        List<Task> duplicates = new ArrayList<>();
+    
+        for (Task task : taskList) { 
+            if (task.getDescription().equals(newTask.getDescription())) {  
+                duplicates.add(task);
+            }
+        }
+    
+        if (duplicates.isEmpty()) {
+            return "No duplicate tasks found.";
+        }
+    
+        StringBuilder result = new StringBuilder("Your duplicate tasks:\n");
+        for (Task task : duplicates) {
+            result.append(task.getTaskNumber()).append(". ").append(task.toString()).append("\n"); 
+        }
+        return result.toString();
+    }
+
+
+    /**
+     * Checks if the given task is a duplicate in the task list.
+     * <p>
+     * @param newTask The task to check for duplication.
+     * @return {@code true} if there are multiple tasks with the same description, {@code false} otherwise.
+     */
+    public Boolean isDuplicate(Task newTask) {
+        int count = 0;
+        for (Task task : taskList) { 
+            if (task.getDescription().equals(newTask.getDescription())) {
+                count++;
+            }
+        }
+        if (count > 1) {
+            return true;
+        }
+        return false; 
+    }
 }

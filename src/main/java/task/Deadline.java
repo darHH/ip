@@ -133,6 +133,11 @@ public class Deadline extends Task {
     }
 
     @Override
+    public String getDescription() {
+        return this.description;
+    }
+
+    @Override
     public String toString() {
         String formattedDate = (deadlineDate != null)
                 ? deadlineDate.format(DateTimeFormatter.ofPattern("dd MMM yyyy"))
