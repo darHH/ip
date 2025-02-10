@@ -21,8 +21,6 @@ public abstract class Task {
     public Task(String description) {
         this.description = description;
         this.isDone = false;
-        totalTasks++;
-        this.taskNumber = totalTasks;
     }
 
     public String getStatusIcon() {

@@ -31,7 +31,6 @@ public class Deadline extends Task {
         String[] descriptionParts = description.split("by");
         this.description = descriptionParts[0].trim();
         this.afterBy = (descriptionParts.length > 1) ? descriptionParts[1].trim() : "-";
-
         if (!saveDateTime(afterBy)) {
             throw new IllegalArgumentException("Invalid date or time format. "
                     + "Declare date and time after 'by' in DD/MM/YYYY and/or HHMM format.");
@@ -51,6 +50,23 @@ public class Deadline extends Task {
         StringBuilder currentNumber = new StringBuilder();
 
         // Extract digits and slashes that might represent dates or times
+        extractNumericSequences(description, numberSequence, currentNumber);
+
+        // Check extracted sequences for valid date or time formats
+        return parseDateTime(numberSequence);
+    }
+
+    /**
+     * Extracts numeric sequences from a given string, capturing potential date or time values.
+     * <p>
+     * This method scans through the input string and collects sequences of digits and slashes
+     * Any non-numeric character (except '/') acts as a delimiter, triggering the end of a number sequence.
+     *
+     * @param description The input string that may contain date and/or time.
+     * @param numberSequence The list to store extracted numeric sequences.
+     * @param currentNumber A StringBuilder used to accumulate individual numeric sequences.
+     */
+    private void extractNumericSequences(String description, ArrayList<String> numberSequence, StringBuilder currentNumber) {
         for (char ch : description.toCharArray()) {
             if (Character.isDigit(ch) || ch == '/') {
                 currentNumber.append(ch); // Add digit to the current sequence
@@ -64,10 +80,21 @@ public class Deadline extends Task {
         if (currentNumber.length() > 0) {
             numberSequence.add(currentNumber.toString());
         }
+    }
 
+    /**
+     * Parses the extracted numeric sequences to determine if they represent a valid date or time.
+     * <p>
+     * This method checks if each extracted sequence matches either a date format (DD/MM/YYYY)
+     * or a time format (HHMM). If a valid date or time is found, it updates the corresponding
+     * instance variables and returns true.
+     *
+     * @param numberSequence A list of extracted numeric sequences to be checked.
+     * @return true if a valid date or time is found, false otherwise.
+     */
+    private boolean parseDateTime(ArrayList<String> numberSequence) {
         boolean isValidDateOrTime = false;
 
-        // Check extracted sequences for valid date or time formats
         for (String element : numberSequence) {
             try {
                 if (element.matches("\\d{2}/\\d{2}/\\d{4}")) {
@@ -86,7 +113,6 @@ public class Deadline extends Task {
 
         return isValidDateOrTime;
     }
-
 
     public String getDeadlineDate() {
         return deadlineDate.format(DateTimeFormatter.ofPattern("dd MMM yyyy"));
