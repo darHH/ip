@@ -22,6 +22,7 @@ public class Storage {
      * @param filePath The path to the file where tasks will be saved or loaded.
      */
     public Storage(String filePath) {
+        assert filePath != null : "File path cannot be null";
         this.filePath = filePath;
         createFileAndDirectoryIfNotExists();
     }
@@ -55,6 +56,7 @@ public class Storage {
      * @param tasks The list of tasks to save.
      */
     public void saveTasks(ArrayList<Task> tasks) {
+        assert tasks != null : "Task list cannot be null";
         try (FileWriter writer = new FileWriter(filePath)) {
             for (Task task : tasks) {
                 writer.write(task.toDataFormat() + System.lineSeparator());
