@@ -17,7 +17,7 @@ public class Parser {
      * @param inputText The input text to be parsed, typically containing a command followed by its description.
      */
     public Parser(String inputText) {
-
+        assert inputText != null : "Input text cannot be null";
         // Split the input text after first word, into two sections.
         String[] inputParts = inputText.trim().split(" ", 2);
         // Extract the first word
