@@ -129,7 +129,9 @@ public class Deadline extends Task {
     }
 
     public String getDeadlineTime() {
-        return this.deadlineTime.format(DateTimeFormatter.ofPattern("ha"));
+        return (deadlineTime != null)
+            ? deadlineTime.format(DateTimeFormatter.ofPattern("ha"))
+            : "No time set";
     }
 
     @Override

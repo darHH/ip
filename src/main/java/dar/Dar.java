@@ -42,6 +42,7 @@ public class Dar {
     public Dar() {
         // Filling in the Instruction Map with functions that return Strings
         instructionMap.put("list", parameter -> commandManager.listTasks());
+        instructionMap.put("sort", parameter -> commandManager.sortDeadline());
         instructionMap.put("mark", commandManager::markTask);
         instructionMap.put("unmark", commandManager::unmarkTask);
         instructionMap.put("todo", commandManager::addTodo);

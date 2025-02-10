@@ -1,6 +1,8 @@
 package command;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import dar.Storage;
 import task.Deadline;
@@ -110,7 +112,7 @@ public class CommandManager {
         taskList.add(task);
         storage.saveTasks(taskList);
         if (isDuplicate(task)) {
-            return "This task has duplicates, you can delete tasks using 'delete (task no.)'\n\n" + findDuplicates(task);
+            return "This task has duplicates, delete tasks using 'delete (task no.)'\n\n" + findDuplicates(task);
         } else {
             return "Got it! I've added this todo:\n" + Task.getTotalTasks() + ". " + task + "\n";
         }
@@ -133,7 +135,7 @@ public class CommandManager {
             taskList.add(task);
             storage.saveTasks(taskList);
             if (isDuplicate(task)) {
-                return "This task has duplicates, you can delete tasks using 'delete (task no.)'\n\n" + findDuplicates(task);
+                return "This task has duplicates, delete tasks using 'delete (task no.)'\n\n" + findDuplicates(task);
             } else {
                 return "Got it! I've added this deadline:\n" + Task.getTotalTasks() + ". " + task + "\n";
             }
@@ -158,10 +160,10 @@ public class CommandManager {
         taskList.add(task);
         storage.saveTasks(taskList);
         if (isDuplicate(task)) {
-            return "This task has duplicates, you can delete tasks using 'delete (task no.)'\n\n" + findDuplicates(task);
+            return "This task has duplicates, delete tasks using 'delete (task no.)'\n\n" + findDuplicates(task);
         } else {
             return "Got it! I've added this event:\n" + Task.getTotalTasks() + ". " + task + "\n";
-        } 
+        }
     }
 
     /**
@@ -225,20 +227,20 @@ public class CommandManager {
      */
     public String findDuplicates(Task newTask) {
         List<Task> duplicates = new ArrayList<>();
-    
-        for (Task task : taskList) { 
-            if (task.getDescription().equals(newTask.getDescription())) {  
+
+        for (Task task : taskList) {
+            if (task.getDescription().equals(newTask.getDescription())) {
                 duplicates.add(task);
             }
         }
-    
+
         if (duplicates.isEmpty()) {
             return "No duplicate tasks found.";
         }
-    
+
         StringBuilder result = new StringBuilder("Your duplicate tasks:\n");
         for (Task task : duplicates) {
-            result.append(task.getTaskNumber()).append(". ").append(task.toString()).append("\n"); 
+            result.append(task.getTaskNumber()).append(". ").append(task.toString()).append("\n");
         }
         return result.toString();
     }
@@ -252,7 +254,7 @@ public class CommandManager {
      */
     public Boolean isDuplicate(Task newTask) {
         int count = 0;
-        for (Task task : taskList) { 
+        for (Task task : taskList) {
             if (task.getDescription().equals(newTask.getDescription())) {
                 count++;
             }
@@ -260,6 +262,25 @@ public class CommandManager {
         if (count > 1) {
             return true;
         }
-        return false; 
+        return false;
+    }
+
+    /**
+     * Sorts all deadline tasks in chronological order based on their date and time.
+     * <p>
+     * @return A formatted string listing all deadlines in chronological order with their task numbers
+     */
+    public String sortDeadline() {
+        List<Deadline> sortedDeadlines = taskList.stream()
+            .filter(task -> task instanceof Deadline)
+            .map(task -> (Deadline) task)
+            .sorted(Comparator.comparing(Deadline::getDeadlineDate).thenComparing(Deadline::getDeadlineTime))
+            .toList();
+
+        return sortedDeadlines.isEmpty()
+            ? "No deadlines found."
+            : "Your deadlines in chronological order:\n" + sortedDeadlines.stream()
+                .map(deadline -> deadline.getTaskNumber() + ". " + deadline)
+                .collect(Collectors.joining("\n"));
     }
 }
