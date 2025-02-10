@@ -16,18 +16,27 @@ public class Deadline extends Task {
     private LocalTime deadlineTime;
 
     /**
-     * Constructs a Deadline task with a description and deadline.
+     * Constructs a Deadline task and extracts its deadline details.
      * <p>
-     * The deadline is specified after the "by" keyword. The date and time are
-     * saved as LocalDate and LocalTime objects respectively.
-     * If the date or time is invalid or missing,
-     * default values are assigned, and an error message is shown.
+     * Calls {@code parseDescription} to extract the task description and deadline 
      *
-     * @param description The full description of the deadline task,
-     *      including the "by" keyword followed by the date and time.
+     * @param description The task description, including the "by" keyword followed by the deadline.
      */
     public Deadline(String description) throws IllegalArgumentException {
         super(description);
+        parseDescription(description);
+    }
+
+    /**
+     * Parses the task description to extract the deadline details.
+     * <p>
+     * This method splits the input based on the "by" keyword to separate the task 
+     * description from the deadline. The extracted deadline is validated and stored. 
+     *
+     * @param description The input string containing the task details and deadline.
+     * @throws IllegalArgumentException If the deadline format is invalid.
+     */
+    private void parseDescription(String description) {
         String[] descriptionParts = description.split("by");
         this.description = descriptionParts[0].trim();
         this.afterBy = (descriptionParts.length > 1) ? descriptionParts[1].trim() : "-";
