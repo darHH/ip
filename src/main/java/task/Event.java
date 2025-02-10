@@ -12,15 +12,27 @@ public class Event extends Task {
     private String description;
 
     /**
-     * Constructs an Event task with a description and time range.
+     * Constructs an Event task and extracts its time range.
      * <p>
-     * The description should contain the keyword "from" to specify the start time
-     * and "to" to specify the end time. If these are missing, default value "-" is assigned.
+     * Calls {@code parseDescription} to extract the event details.
      *
-     * @param description The full event description, including start ("from") and end ("to") times.
+     * @param description The event description, including the "from" and "to" time range.
      */
     public Event(String description) {
         super(description);
+        parseDescription(description);
+    }
+
+    /**
+     * Parses the event description to extract the time range.
+     * <p>
+     * Splits the input based on the "from" keyword to extract the start time 
+     * and the "to" keyword to extract the end time. If either is missing, 
+     * a default value ("-") is assigned.
+     *
+     * @param description The input string containing the event details and time range.
+     */
+    private void parseDescription(String description) {
         String[] descriptionPartOne = description.split("from");
         this.description = descriptionPartOne[0];
         if (descriptionPartOne.length > 1) {
