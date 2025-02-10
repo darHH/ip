@@ -1,0 +1,4 @@
+T | 0 | love
+T | 0 | work
+D | 0 | meetingby 12/12/1222
+E | 0 | date from12to 2

@@ -21,6 +21,11 @@ public abstract class Task {
     public Task(String description) {
         this.description = description;
         this.isDone = false;
+        totalTasks++;
+        assert totalTasks >= 0 : "Total tasks cannot be negative";
+        this.taskNumber = totalTasks;
+        assert this.taskNumber >= 0 : "Task number cannot be negative";
+
     }
 
     public String getStatusIcon() {
@@ -36,6 +41,7 @@ public abstract class Task {
     }
 
     public int getTaskNumber() {
+        assert this.taskNumber >= 0 : "Task number cannot be negative";
         return this.taskNumber;
     }
 
@@ -44,14 +50,17 @@ public abstract class Task {
     }
 
     public static int getTotalTasks() {
+        assert totalTasks >= 0 : "Total tasks cannot be negative";
         return totalTasks;
     }
 
     public void updateTaskNumber(int newTaskNumber) {
+        assert this.taskNumber >= 0 : "Task number cannot be negative";
         this.taskNumber = newTaskNumber;
     }
 
     public void decrementTotalTasksCount() {
+        assert totalTasks > 0 : "Total tasks cannot be negative";
         totalTasks--;
     }
 
