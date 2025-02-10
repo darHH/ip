@@ -38,14 +38,12 @@ public class CommandManager {
     public String listTasks() {
         if (taskList.isEmpty()) {
             return "Nice, your list is empty, you deserve a break! :)\n";
-        } else {
-            StringBuilder response = new StringBuilder("Here's your list, better get going!\n");
-            for (int i = 0; i < taskList.size(); i++) {
-                Task task = taskList.get(i);
-                response.append(task.getTaskNumber()).append(". ").append(task).append("\n");
-            }
-            return response.toString();
         }
+        
+        return "Here's your list, better get going!\n" + 
+               taskList.stream()
+                   .map(task -> task.getTaskNumber() + ". " + task)
+                   .reduce("", (a, b) -> a + b + "\n");
     }
 
     /**
@@ -199,24 +197,15 @@ public class CommandManager {
      * @param matchWord The keyword to search for in task descriptions.
      */
     public String findTasks(String matchWord) {
-        StringBuilder response = new StringBuilder("You looking for these?\n");
-        response.append("(Numbers represent that task's number, for deleting and marking etc.)\n\n");
-
-        matchWord = matchWord.toLowerCase();
-        boolean found = false;
-
-        for (Task task : taskList) {
-            if (task.getDescription().toLowerCase().contains(matchWord)) {
-                response.append(task.getTaskNumber()).append(". ").append(task).append("\n");
-                found = true;
-            }
-        }
-
-        if (!found) {
-            response.append("You have no matching tasks :(\n");
-        }
-
-        return response.toString();
+        String header = "You looking for these?\n" +
+                       "(Numbers represent that task's number, for deleting and marking etc.)\n\n";
+        
+        String matches = taskList.stream()
+            .filter(task -> task.getDescription().toLowerCase().contains(matchWord.toLowerCase()))
+            .map(task -> task.getTaskNumber() + ". " + task)
+            .reduce("", (a, b) -> a + b + "\n");
+        
+        return header + (matches.isEmpty() ? "You have no matching tasks :(\n" : matches);
     }
 
 }
