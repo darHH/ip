@@ -6,12 +6,8 @@ Welcome to the DAR Chatbot! This guide will help you understand how to interact 
 1. [Getting Started](#getting-started)
 2. [Basic Commands](#basic-commands)
 3. [Task Management](#task-management)
-4. [Viewing Tasks](#viewing-tasks)
-5. [Marking Tasks as Done](#marking-tasks-as-done)
-6. [Deleting Tasks](#deleting-tasks)
-7. [Saving and Loading Tasks](#saving-and-loading-tasks)
-8. [Exiting the Chatbot](#exiting-the-chatbot)
-9. [Error Handling](#error-handling)
+4. [Exiting the Chatbot](#exiting-the-chatbot)
+5. [Error Handling](#error-handling)
 
 ## Getting Started
 
@@ -30,43 +26,43 @@ The DAR Chatbot understands several basic commands to help you manage your tasks
 ### Adding a ToDo Task
 
 To add a ToDo task, use the following command:
-
+```
 todo Buy milk
-
+```
 ### Adding a Deadline Task
 
 To add a Deadline task, use the following command:
-
-deadline Submit assignment /by 20/10/2023 2359
-
+```
+deadline Submit assignment by 20/10/2023 2359
+```
 ### Adding an Event Task
 
 To add an Event task, use the following command:
-
+```
 event Team meeting from Monday to Tuesday
-
-## Viewing Tasks
+```
+### Viewing Tasks
 
 To view all tasks, use the `list` command:
-
+```
 list
-
+```
 This will display a list of all tasks with their status (done or not done).
 
-## Marking Tasks as Done
+### Marking and Unmarking Tasks
 
-To mark a task as done, use the `done` command followed by the task number:
-
-done 2
-
+To mark or unmark a task, use the `mark` and `unmark`  command respectively followed by the task number:
+```
+mark 2
+```
 This will mark the second task in the list as done.
 
-## Deleting Tasks
+### Deleting Tasks
 
 To delete a task, use the `delete` command followed by the task number:
-
+```
 delete 3
-
+```
 This will delete the third task in the list.
 
 ## Saving and Loading Tasks
@@ -76,9 +72,9 @@ The DAR Chatbot automatically saves your tasks to a file called `tasks.txt`. Whe
 ## Exiting the Chatbot
 
 To exit the chatbot, use the `bye` command:
-
+```
 bye
-
+```
 
 This will save your tasks and exit the application.
 
