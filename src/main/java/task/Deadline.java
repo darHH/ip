@@ -41,6 +41,7 @@ public class Deadline extends Task {
         this.description = descriptionParts[0].trim();
         this.afterBy = (descriptionParts.length > 1) ? descriptionParts[1].trim() : "-";
         if (!saveDateTime(afterBy)) {
+            decrementTotalTasksCount();
             throw new IllegalArgumentException("Invalid date or time format. "
                     + "Declare date and time after 'by' in DD/MM/YYYY and/or HHMM format.");
         }
