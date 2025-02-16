@@ -1,4 +1,4 @@
-# DAR Chatbot User Guide
+# Dar Chatbot User Guide
 
 Welcome to the DAR Chatbot! This guide will help you understand how to interact with the chatbot and make the most out of its features.
 
@@ -15,7 +15,7 @@ To start using the DAR Chatbot, simply run the application. You will be greeted 
 
 ## Basic Commands
 
-The DAR Chatbot understands several basic commands to help you manage your tasks. Here are some of the basic commands you can use:
+Dar Chatbot understands several basic commands to help you manage your tasks. Here are some of the basic commands you can use:
 
 - `todo <description>`: Adds a new ToDo task with the given description.
 - `deadline <description> /by <date and/or time>`: Adds a new Deadline task with the given description and deadline.
@@ -80,8 +80,11 @@ This will save your tasks and exit the application.
 
 ## Error Handling
 
-If you enter an invalid command or provide incorrect input, the DAR Chatbot will display an error message. Make sure to follow the correct command format as described in this guide.
+If you enter an invalid command or provide incorrect input, the Dar Chatbot will display an error message. Make sure to follow the correct command format as described in this guide.
 
 ---
 
-Thank you for using the DAR Chatbot! I hope this guide helps you manage your tasks effectively. If you have any questions or need further assistance, feel free to reach out to me!
+Thank you for using the Dar Chatbot! I hope this guide helps you manage your tasks effectively. If you have any questions or need further assistance, feel free to reach out to me!
+
+https://darHH.github.io/ip/
+https://darHH.github.io/ip/Ui.png
