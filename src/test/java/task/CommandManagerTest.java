@@ -1,13 +1,17 @@
-import command.CommandManager;
-import dar.Storage;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-import task.Task;
-import task.ToDo;
+package task;
+import static org.junit.jupiter.api.Assertions.assertEquals; // Static Import
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
+// Standard Java Package Imports
 import java.util.ArrayList;
 
-import static org.junit.jupiter.api.Assertions.*;
+// Special Imports (JUnit)
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
+// Custom Imports
+import command.CommandManager;
+import dar.Storage;
 
 public class CommandManagerTest {
     private CommandManager commandManager;
