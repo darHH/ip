@@ -1,7 +1,7 @@
 .root {
-    main-color: rgb(237, 255, 242);       /* Create a looked-up color called "main-color" within root. */
+    main-color: rgb(237, 255, 242);     
     -fx-background-color: main-color;
-    -fx-background-image: url("../images/ghibili.png"); /* Set image */
+    -fx-background-image: url("../images/farm2.png");
     -fx-background-size: cover;
 }
 
@@ -31,7 +31,7 @@
 }
 
 .scroll-bar {
-    -fx-font-size: 10px;  /* Change width of scroll bar. */
+    -fx-font-size: 10px;
     -fx-background-color: main-color;
 }
 
@@ -40,7 +40,6 @@
     -fx-background-radius: 1em;
 }
 
-/* Hides the increment and decrement buttons. */
 .scroll-bar .increment-button,
 .scroll-bar .decrement-button {
     -fx-pref-height: 0;
