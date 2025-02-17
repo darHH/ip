@@ -1,6 +1,6 @@
 # Dar Chatbot User Guide
 
-Welcome to the DAR Chatbot! This guide will help you understand how to interact with the chatbot and make the most out of its features.
+Welcome to Dar Chatbot! This guide will help you understand how to interact with Dar and make the most out of its features.
 
 ## Table of Contents
 1. [Getting Started](#getting-started)
@@ -11,17 +11,18 @@ Welcome to the DAR Chatbot! This guide will help you understand how to interact 
 
 ## Getting Started
 
-To start using the DAR Chatbot, simply run the application. You will be greeted with a welcome message and instructions on how to use the chatbot.
+To start using the DAR Chatbot, simply run the application with `npm run dev`. You will be greeted with a GUI and a welcome message from Dar.
 
 ## Basic Commands
 
-Dar Chatbot understands several basic commands to help you manage your tasks. Here are some of the basic commands you can use:
+Dar Chatbot understands several basic commands to help you manage your tasks. Here are the three tasks that Dar understands and can keep track of:
 
 - `todo <description>`: Adds a new ToDo task with the given description.
 - `deadline <description> /by <date and/or time>`: Adds a new Deadline task with the given description and deadline.
-- `event <description> /at <date and/or time>`: Adds a new Event task with the given description and event time.
+- `event <description> from <date and/or time> to <date and/or time>`: Adds a new Event task with the given description and event time.
 
 ## Task Management
+Dar listens to the first word very carefully, these are the commands that Dar understands. (Commands are not case-sensitive)
 
 ### Adding a ToDo Task
 
@@ -64,6 +65,19 @@ To delete a task, use the `delete` command followed by the task number:
 delete 3
 ```
 This will delete the third task in the list.
+
+### Sorting Deadline Tasks
+
+To view all your deadlines in chronological order, use the following command:
+```
+sort
+```
+### Finding Tasks
+
+To find a specific task by a keyword, use the following command: 
+```
+find work
+```
 
 ## Saving and Loading Tasks
 
