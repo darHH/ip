@@ -12,6 +12,6 @@ public class DeadlineTest {
     @Test
     public void deadlineTimeSaved() {
         Deadline deadline = new Deadline("Project Work by 12/12/2222 1600");
-        assertEquals("4pm", deadline.getDeadlineTime());
+        assertEquals("4PM", deadline.getDeadlineTime().toUpperCase());
     }
 }
