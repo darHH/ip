@@ -3,6 +3,7 @@ plugins {
     id 'application'
     id 'checkstyle'
     id 'com.github.johnrengelman.shadow' version '7.1.2'
+    id 'org.openjfx.javafxplugin' version '0.0.13'
 }
 
 checkstyle {
@@ -64,8 +65,16 @@ application {
 shadowJar {
     archiveBaseName = "dar"
     archiveClassifier = null
+    mergeServiceFiles()
 }
 
 run{
     standardInput = System.in
+}
+
+tasks.processResources.doLast {
+    copy {
+        from 'src/main/resources/view/MainWindow.fxml'
+        into "${buildDir}/resources/main/view"
+    }
 }
